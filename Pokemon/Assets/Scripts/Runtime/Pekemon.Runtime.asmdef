@@ -1,7 +1,9 @@
 {
     "name": "Pekemon.Runtime",
     "rootNamespace": "Pekemon",
-    "references": [],
+    "references": [
+        "GUID:79ddf1f2d7018ab478da69032d1ee076"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

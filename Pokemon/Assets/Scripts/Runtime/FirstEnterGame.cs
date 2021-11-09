@@ -9,7 +9,8 @@ namespace Pekemon
         // Start is called before the first frame update
         void Start()
         {
-            
+            Dialog.Init();
+            Dialog.Show("");
         }
 
         // Update is called once per frame
