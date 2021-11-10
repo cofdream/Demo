@@ -10,7 +10,9 @@ namespace Pekemon
         void Start()
         {
             Dialog.Init();
-            Dialog.Show("");
+            Dialog.Show("这是一段<color=red>打字机</color>文字.");
+
+
         }
 
         // Update is called once per frame
