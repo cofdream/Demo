@@ -19,4 +19,5 @@ MonoBehaviour:
   - "\u6211\u60F3\u4F60\u4E5F\u4F1A\u559C\u6B22\u7684\u3002"
   - "\u4F60\u662F\u7537\u5B69\uFF1F\r\n\u8FD8\u662F\u5973\u5B69\uFF1F"
   command: "\u8BBE\u7F6E\u6027\u522B"
+  Command: {fileID: 11400000, guid: d2d4456fea73fe04ab9e5aa0a380a857, type: 2}
   next: {fileID: 11400000, guid: 31073fd6fdb9d0b438f608401605fd1d, type: 2}

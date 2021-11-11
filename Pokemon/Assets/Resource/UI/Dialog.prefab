@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 424427236175240884}
   - component: {fileID: 424427236175240886}
   - component: {fileID: 424427236175240885}
+  - component: {fileID: 3378184384178524806}
+  - component: {fileID: 1809684616315387845}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -25,7 +27,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424427236175240891}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -34,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 11.758209, y: -128.7573}
-  m_SizeDelta: {x: 809.9004, y: 227.5146}
+  m_AnchoredPosition: {x: 11.758209, y: -69.55148}
+  m_SizeDelta: {x: 809.9004, y: 109.103}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &424427236175240886
 CanvasRenderer:
@@ -78,7 +80,38 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8FD9\u662F\u4E00\u6BB5\u6253\u5B57\u673A\u6587\u5B57."
+  m_Text: "\u8FD9\u662F\u4E00\u6BB5<color=red>\u6253\u5B57\u673A</color>\u6587\u5B57."
+--- !u!114 &3378184384178524806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424427236175240891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4f1a4fbdbe6e944b7a49190560fa18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 424427236175240885}
+  PlayEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1809684616315387845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424427236175240891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &424427237314992592
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,3 +238,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ContetnText: {fileID: 424427236175240885}
+  textTypewriter: {fileID: 3378184384178524806}
