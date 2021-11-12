@@ -7,6 +7,8 @@ namespace Pekemon
 {
     public class PlayerController : MonoBehaviour
     {
+        private Vector3 movement;
+
         private float BaseSpeed = 1.5f;
         public float moveSpeed;
         public Animator animator;
@@ -24,7 +26,7 @@ namespace Pekemon
 
         void Start()
         {
-            
+
         }
 
 
@@ -38,23 +40,16 @@ namespace Pekemon
             {
                 if (!Stop)
                 {
-                    WaitInput();
+                    CheckMove();
                 }
             }
         }
 
-        private void WaitInput()
+        private void CheckMove()
         {
-            float ho = Input.GetAxisRaw("Horizontal");
-            float ver = Input.GetAxisRaw("Vertical");
-
-            if (ho != 0)
+            if (movement != Vector3.zero)
             {
-                StartMove(new Vector3(ho, 0, 0));
-            }
-            else if (ver != 0)
-            {
-                StartMove(new Vector3(0, ver, 0));
+                StartMove(movement);
             }
             else
             {
@@ -121,6 +116,18 @@ namespace Pekemon
                     triggerable.Enter(this);
                 }
             }
+        }
+
+
+        private void OnMove(UnityEngine.InputSystem.InputValue value)
+        {
+            var vector2 = value.Get<Vector2>();
+            if (vector2.x != 0)
+            {
+                vector2.y = 0;
+            }
+
+            movement = vector2;
         }
 
         private void OnDrawGizmos()
