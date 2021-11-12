@@ -6,6 +6,6 @@ namespace Pekemon
 {
     public interface ITriggerable
     {
-        void Enter(PlayerController playerController);
+        bool PlayerTriggerable(PlayerController playerController);
     }
 }

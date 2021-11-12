@@ -16,6 +16,7 @@ namespace Pekemon
         private int index;
         private bool playState;
         private bool isRefresh;
+        private bool playOver;
 
         public UnityAction PlayEnd;
 
@@ -32,6 +33,12 @@ namespace Pekemon
                     time -= speed;
                     isRefresh = true;
                     text.SetVerticesDirty();
+                }
+                if (playOver)
+                {
+                    playState = false;
+                    playOver = false;
+                    PlayEnd?.Invoke();
                 }
             }
         }
@@ -54,6 +61,7 @@ namespace Pekemon
             playState = true;
             index = 4;
             isRefresh = false;
+            playOver = false;
         }
         public void Stop()
         {
@@ -87,8 +95,7 @@ namespace Pekemon
             index += 4;
             if (index >= length + 4)
             {
-                playState = false;
-                PlayEnd?.Invoke();
+                playOver = true;
             }
         }
     }

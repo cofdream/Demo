@@ -94,9 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 424427236175240885}
-  PlayEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1809684616315387845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7462902508111187717}
+  - component: {fileID: 5122014993673530870}
   - component: {fileID: 4971259252948328154}
   m_Layer: 5
   m_Name: Dialog
@@ -225,6 +223,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &5122014993673530870
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554973575172403179}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &4971259252948328154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,5 +247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8355be8ca932afd4ea0b6912c21848ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 5122014993673530870}
   ContetnText: {fileID: 424427236175240885}
   textTypewriter: {fileID: 3378184384178524806}

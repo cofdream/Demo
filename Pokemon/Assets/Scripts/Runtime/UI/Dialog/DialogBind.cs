@@ -7,7 +7,13 @@ namespace Pekemon
 {
     public class DialogBind : MonoBehaviour
     {
+        public CanvasGroup canvasGroup;
         public Text ContetnText;
         public TextTypewriter textTypewriter;
+
+        private void Awake()
+        {
+            canvasGroup.alpha = 0;
+        }
     }
 }

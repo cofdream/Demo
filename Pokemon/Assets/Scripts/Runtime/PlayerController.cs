@@ -7,32 +7,30 @@ namespace Pekemon
 {
     public class PlayerController : MonoBehaviour
     {
-        private Vector3 movement;
+        [SerializeField] private GameObject mainGO;
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private Animator animator;
 
-        private float BaseSpeed = 1.5f;
-        public float moveSpeed;
-        public Animator animator;
-
-        private bool isMove;
-
-        private Vector3 targetPosition;
+        private Vector2 movement;
+        private float baseSpeed = 1.5f;//
+        private bool isMoving;
 
         public float moveTime;
         private float startTime;
 
+        private Vector3 targetPosition;
+
+        private Vector2 towards;
+
         public event UnityAction MoveEnd;
 
         public bool Stop { get; set; }
-
-        void Start()
-        {
-
-        }
-
+        public Vector2 ForwardPoint => towards + (Vector2)mainGO.transform.position + new Vector2(0, 0.5f);
+        public bool IsMoving => isMoving;
 
         void Update()
         {
-            if (isMove)
+            if (isMoving)
             {
                 Move();
             }
@@ -47,9 +45,17 @@ namespace Pekemon
 
         private void CheckMove()
         {
-            if (movement != Vector3.zero)
+            if (movement.x != 0)
             {
-                StartMove(movement);
+                towards.x = movement.x;
+                towards.y = 0;
+                StartMove(new Vector3(movement.x, 0, 0));
+            }
+            else if (movement.y != 0)
+            {
+                towards.x = 0;
+                towards.y = movement.y;
+                StartMove(new Vector3(0, movement.y, 0));
             }
             else
             {
@@ -58,7 +64,7 @@ namespace Pekemon
         }
         private void StartMove(Vector3 direction)
         {
-            var startPosition = transform.position;
+            var startPosition = mainGO.transform.position;
             var targetPosition = startPosition + direction;
             var checkPoint = targetPosition + new Vector3(0, 0.5f, 0);
 
@@ -70,15 +76,13 @@ namespace Pekemon
                 startTime = Time.time;
                 moveTime = 0;
 
-                CheckTrigger(checkPoint);
-
-                isMove = true;
+                isMoving = true;
                 this.targetPosition = targetPosition;
             }
         }
         public void StopMove()
         {
-            isMove = false;
+            isMoving = false;
             targetPosition = Vector3.zero;
             animator.SetBool("Walk", false);
         }
@@ -87,12 +91,12 @@ namespace Pekemon
             animator.speed = moveSpeed;
 
             moveTime = Time.time - startTime;
-            var position = transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * BaseSpeed * moveSpeed);
+            var position = mainGO.transform.position = Vector3.MoveTowards(mainGO.transform.position, targetPosition, Time.deltaTime * baseSpeed * moveSpeed);
 
             float distance = Vector3.Distance(position, targetPosition);
             if (distance <= 0.0001f)
             {
-                isMove = false;
+                isMoving = false;
                 animator.SetBool("Walk", false);
                 MoveEnd?.Invoke();
             }
@@ -100,61 +104,51 @@ namespace Pekemon
 
         private bool CheckMove(Vector2 poit)
         {
-            var collider2D = Physics2D.OverlapCircle(poit, 0.4f, LayerMask.GetMask("Obstacle"));
-
-            return collider2D == null;
-        }
-
-        private void CheckTrigger(Vector2 poit)
-        {
             var collider2D = Physics2D.OverlapCircle(poit, 0.4f, LayerMask.GetMask("Triggerable"));
+
             if (collider2D != null)
             {
                 var triggerable = collider2D.GetComponent<ITriggerable>();
                 if (triggerable != null)
                 {
-                    triggerable.Enter(this);
+                    return triggerable.PlayerTriggerable(this);
                 }
+                return false;
             }
+
+            return true;
         }
 
 
         private void OnMove(UnityEngine.InputSystem.InputValue value)
         {
             var vector2 = value.Get<Vector2>();
-            if (vector2.x != 0)
-            {
-                vector2.y = 0;
-            }
-
+            Debug.Log(vector2);
             movement = vector2;
         }
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
-            float ho = Input.GetAxisRaw("Horizontal");
-            float ver = Input.GetAxisRaw("Vertical");
-
-            if (ho != 0)
-            {
-                ver = 0;
-            }
-            else if (ver == 0)
+            if (movement == Vector2.zero)
             {
                 return;
             }
 
-            Vector3 position = transform.position + new Vector3(ho, ver + 0.5f, 0);
-            if (CheckMove(position))
-            {
-                Gizmos.color = Color.green;
-            }
-            else
-            {
-                Gizmos.color = Color.red;
-            }
+            Vector3 position = mainGO.transform.position + new Vector3(movement.x, movement.y + 0.5f, 0);
+            //if (Check(position))
+            //{
+            //    Gizmos.color = Color.green;
+            //}
+            //else
+            //{
+            //    Gizmos.color = Color.red;
+            //}
+            Gizmos.color = Color.green;
 
             Gizmos.DrawSphere(position, 0.4f);
         }
+#endif
+
     }
 }

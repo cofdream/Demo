@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "73e5ac14100df4d87ce9e4d0abcf3e67aeea2b47"
+      "hash": "926d6a53418e019446833315234d55c38dcd8d72"
     },
     "com.cofdream.toolkit": {
       "version": "https://github.com/cofdream/UnityToolKit.git#upm",

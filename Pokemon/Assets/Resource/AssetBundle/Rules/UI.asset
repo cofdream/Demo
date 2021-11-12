@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2976326d8136f124ea517cbbc3a3d487, type: 3}
+  m_Script: {fileID: 11500000, guid: dfe9dc7a8f0bbf04aa1472c676a1b1f5, type: 3}
   m_Name: UI
   m_EditorClassIdentifier: 
-  AssetFolder: {fileID: 102900000, guid: 05684d3118c20e841b6d53ccc4d8ba4a, type: 3}
+  AssetBundleName: 
+  AssetNames: []

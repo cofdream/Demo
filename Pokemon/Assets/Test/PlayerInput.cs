@@ -17,9 +17,8 @@ public class PlayerInput : MonoBehaviour
   
     void Update()
     {
-        return;
-        Cursor.lockState = cursorLockMode;
-        Cursor.visible = cursorVisible;
+        //Cursor.lockState = cursorLockMode;
+        //Cursor.visible = cursorVisible;
     }
 
     void OnMenu()
