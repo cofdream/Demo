@@ -1698,6 +1698,16 @@ MonoBehaviour:
       PetState: 0
       Hp: 100
       PP: 0a0000000a0000000a0000000a000000
+    - Id: 1001
+      Level: 5
+      PetState: 0
+      Hp: 100
+      PP: 0a0000000a0000000a0000000a000000
+    - Id: 1001
+      Level: 5
+      PetState: 0
+      Hp: 100
+      PP: 0a0000000a0000000a0000000a000000
 --- !u!1 &6946011313097484460
 GameObject:
   m_ObjectHideFlags: 0
