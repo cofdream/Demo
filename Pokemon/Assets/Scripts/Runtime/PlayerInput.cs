@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace Pekemon
 {
-    public class Interactive : MonoBehaviour
+    public class PlayerInput : MonoBehaviour
     {
-       [SerializeField] private PlayerController playerController;
+        [SerializeField] private PlayerController playerController;
+
 
         void OnConfirm()
         {
@@ -21,6 +22,11 @@ namespace Pekemon
                     interactive.Execute();
                 }
             }
+        }
+
+        void OnMenu()
+        {
+            UIManager.Get<MenuView>();
         }
     }
 }

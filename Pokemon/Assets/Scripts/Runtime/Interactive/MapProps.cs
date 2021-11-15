@@ -8,7 +8,9 @@ namespace Pekemon
     {
         public void Execute()
         {
-            Dialog.Show("获取物品：？？？ X 1.", Dialog.Close);
+            var dialog = UIManager.Get<Dialog>();
+
+            dialog.Show("获取物品：？？？ X 1.", dialog.Close);
         }
     }
 }

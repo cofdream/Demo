@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c129346b1407b468e06b40f9de5cc5, type: 3}
   m_Name: Chamander
   m_EditorClassIdentifier: 
-  id: 0
+  id: 1002
   name: Chamander
   description: 
   frontSprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}

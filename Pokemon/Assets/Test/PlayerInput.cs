@@ -32,5 +32,6 @@ public class PlayerInput : MonoBehaviour
     void OnCancel()
     {
 
+         
     }
 }

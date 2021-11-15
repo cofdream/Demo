@@ -1,12 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class Pet
 {
-    private PetBase petBase;
-    private int level;
+   [SerializeField] private PetBase petBase;
+   [SerializeField] private int level;
+
+    public Move[] moves;
 
     public int Hp { get; set; }
     public int MaxHp => Mathf.FloorToInt(petBase.Hp * level / 100f) + 10;
@@ -19,7 +21,6 @@ public class Pet
     public PetBase PetBase => petBase;
     public int Level => level;
 
-    public Move[] moves;
     public Pet(PetBase petBase, int level)
     {
         this.petBase = petBase;

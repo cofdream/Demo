@@ -10,48 +10,61 @@ namespace Pekemon
     {
         private IAssetLoader loader;
 
-        private Plot plot;
-        private int index;
-        private bool next;
+        public BattlePlayer Hero;
+        public BattlePlayer Enemy;
+
+        public Battle Battle;
+
+        public PlayerData playerData;
 
         void Start()
         {
-            loader = AssetsLoad.GetAssetLoad("Assets/Resource/Plot");
-            plot = loader.Load<Plot>("1_FirstEnterGame.asset");
+            //playerData = PlayerData.Instance;
 
-            index = 0;
-            Dialog.Show(plot.content[index], PlayNext);
+            //UIManager.Get<BagView>().Show(playerData.BagData.Props);
 
+            UIManager.Get<PetView>().Show(playerData.PetDatas);
+
+            //StartCoroutine(BattleModle());
         }
 
-        private void PlayNext()
+        IEnumerator BattleModle()
         {
-            next = true;
-        }
+            //var battleView = UIManager.Get<BattleView>();
 
-        void Update()
-        {
-            if (next && (Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.X)))
+            //battleView.Text.text = "开始模拟战斗.";
+            //battleView.textTypewriter.Play(0.2f);
+
+            yield return new WaitForSeconds(1.5f);
+
+            //battleView.Text.text = "接下里做什么.";
+
+            loader = AssetsLoad.GetAssetLoad("Assets_Resource_Pets");
+
+            var pet1 = loader.Load<PetBase>("Bulbasaur");
+            Hero = new BattlePlayer();
+            Hero.pets = new Pet[]
             {
-                
-                index++;
-                if (index >= plot.content.Length)
-                {
+                new Pet(pet1,5),
+            };
 
-                    plot = plot.next;
+            var pet2 = loader.Load<PetBase>("Chamander");
+            Enemy = new BattlePlayer();
+            Enemy.pets = new Pet[]
+            {
+                new Pet(pet2,5),
+            };
 
-                    next = false;
-                }
-                else
-                {
-                    Dialog.Show(plot.content[index], PlayNext);
-                }
-            }
+
+            Battle = new Battle();
+
+            Debug.Log("");
         }
+
 
         private void OnDestroy()
         {
-            loader.UnloadAllLoadedObjects();
+            loader?.UnloadAllLoadedObjects();
         }
     }
 }

@@ -123,7 +123,6 @@ namespace Pekemon
         private void OnMove(UnityEngine.InputSystem.InputValue value)
         {
             var vector2 = value.Get<Vector2>();
-            Debug.Log(vector2);
             movement = vector2;
         }
 
