@@ -13,7 +13,7 @@ namespace Pekemon
 
         private Vector2 movement;
         private float baseSpeed = 1.5f;//
-        private bool isMoving;
+        private bool isMove;
 
         public float moveTime;
         private float startTime;
@@ -25,12 +25,21 @@ namespace Pekemon
         public event UnityAction MoveEnd;
 
         public bool Stop { get; set; }
-        public Vector2 ForwardPoint => towards + (Vector2)mainGO.transform.position + new Vector2(0, 0.5f);
-        public bool IsMoving => isMoving;
+
+        private void Awake()
+        {
+            var playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
+
+            PlayerInput.PlayerAction.MoveQueue.Add(OnMove);
+            PlayerInput.PlayerAction.MenuQueue.Add(OnMenu);
+
+            playerInput.PlayerInputAction = PlayerInput.PlayerAction;
+        }
+
 
         void Update()
         {
-            if (isMoving)
+            if (isMove)
             {
                 Move();
             }
@@ -76,17 +85,17 @@ namespace Pekemon
                 startTime = Time.time;
                 moveTime = 0;
 
-                isMoving = true;
+                isMove = true;
                 this.targetPosition = targetPosition;
             }
         }
         public void StopMove()
         {
-            isMoving = false;
+            isMove = false;
             targetPosition = Vector3.zero;
             animator.SetBool("Walk", false);
         }
-        private void Move()
+        public void Move()
         {
             animator.speed = moveSpeed;
 
@@ -96,13 +105,13 @@ namespace Pekemon
             float distance = Vector3.Distance(position, targetPosition);
             if (distance <= 0.0001f)
             {
-                isMoving = false;
+                isMove = false;
                 animator.SetBool("Walk", false);
                 MoveEnd?.Invoke();
             }
         }
 
-        private bool CheckMove(Vector2 poit)
+        public bool CheckMove(Vector2 poit)
         {
             var collider2D = Physics2D.OverlapCircle(poit, 0.4f, LayerMask.GetMask("Triggerable"));
 
@@ -120,11 +129,42 @@ namespace Pekemon
         }
 
 
-        private void OnMove(UnityEngine.InputSystem.InputValue value)
+
+        public void OnConfirm()
         {
-            var vector2 = value.Get<Vector2>();
-            movement = vector2;
+            if (isMove) return;
+
+            Vector2 forwardPoint = towards + (Vector2)mainGO.transform.position + new Vector2(0, 0.5f);
+
+            var collider2D = Physics2D.OverlapCircle(forwardPoint, 0.4f, LayerMask.GetMask("Triggerable"));
+            if (collider2D != null)
+            {
+                var interactive = collider2D.GetComponent<IInteractive>();
+                if (interactive != null)
+                {
+                    interactive.Execute();
+                }
+            }
         }
+        public void OnCancel()
+        {
+
+        }
+        public void OnMenu()
+        {
+            UIManager.Get<MenuView>();
+        }
+        public void OnSelect()
+        {
+
+        }
+        public void OnMove(Vector2 value)
+        {
+            movement = value;
+        }
+
+
+
 
 #if UNITY_EDITOR
         private void OnDrawGizmos()

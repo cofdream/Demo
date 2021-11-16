@@ -4,5 +4,10 @@ using UnityEngine;
 
 namespace Pekemon
 {
-    
+    public class BattleUtil
+    {
+        public int Hp;
+        public int MaxHp;
+
+    }
 }

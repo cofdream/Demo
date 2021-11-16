@@ -8,16 +8,15 @@ namespace Pekemon
     public enum PropType
     {
         Goods,
-        LearnMove,
-        Ball,
-        PlotGoods,
+        LearnableSkillMachine,
+        PetBall,
+        PlotProp,
     }
 
     [System.Serializable]
     public class PropData
     {
         public int id;
-        public PropType PropType;
         public int count;
     }
 }

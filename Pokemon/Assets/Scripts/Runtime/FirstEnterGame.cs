@@ -1,5 +1,4 @@
 ﻿using Cofdream.Asset;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +9,8 @@ namespace Pekemon
     {
         private IAssetLoader loader;
 
-        public BattlePlayer Hero;
-        public BattlePlayer Enemy;
+        //public BattlePlayer Hero;
+        //public BattlePlayer Enemy;
 
         public Battle Battle;
 
@@ -19,11 +18,7 @@ namespace Pekemon
 
         void Start()
         {
-            //playerData = PlayerData.Instance;
-
-            //UIManager.Get<BagView>().Show(playerData.BagData.Props);
-
-            UIManager.Get<PetView>().Show(playerData.PetDatas);
+            playerData = PlayerData.Instance;
 
             //StartCoroutine(BattleModle());
         }
@@ -39,31 +34,53 @@ namespace Pekemon
 
             //battleView.Text.text = "接下里做什么.";
 
-            loader = AssetsLoad.GetAssetLoad("Assets_Resource_Pets");
+            //loader = AssetsLoad.GetAssetLoad("Assets_Resource_Pets");
 
-            var pet1 = loader.Load<PetBase>("Bulbasaur");
-            Hero = new BattlePlayer();
-            Hero.pets = new Pet[]
-            {
-                new Pet(pet1,5),
-            };
+            //var pet1 = loader.Load<PetBase>("Bulbasaur");
+            //Hero = new BattlePlayer();
+            //Hero.pets = new Pet[]
+            //{
+            //    new Pet(pet1,5),
+            //};
 
-            var pet2 = loader.Load<PetBase>("Chamander");
-            Enemy = new BattlePlayer();
-            Enemy.pets = new Pet[]
-            {
-                new Pet(pet2,5),
-            };
+            //var pet2 = loader.Load<PetBase>("Chamander");
+            //Enemy = new BattlePlayer();
+            //Enemy.pets = new Pet[]
+            //{
+            //    new Pet(pet2,5),
+            //};
 
 
-            Battle = new Battle();
+            //Battle = new Battle();
 
-            Debug.Log("");
+         
+
+            // 准备UI.
+
+            Debug.Log("系统：玩家1 速度 高于玩家2");
+
+            Debug.Log("玩家1：释放了技能 1");
+            Debug.Log("玩家2：释放了技能 1");
+
+            Debug.Log("系统：玩家2 扣血 xx。");
+            Debug.Log("系统：玩家1 扣血 xx。");
+
+
+            Debug.Log("玩家1：释放了技能 2");
+            Debug.Log("玩家2：释放了技能 3");
+
+            Debug.Log("系统：玩家2 扣血 xx。");
+            Debug.Log("系统：玩家1 扣血 xx。");
+
+
+            Debug.Log("系统：玩家2 阵亡。");
         }
 
 
         private void OnDestroy()
         {
+            PlayerData.Save();
+
             loader?.UnloadAllLoadedObjects();
         }
     }

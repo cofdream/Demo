@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Selection",
+                    "type": "Button",
+                    "id": "f0ac4889-d666-477c-aaf4-296bd97b966c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -231,7 +239,7 @@
                 {
                     "name": "",
                     "id": "57248048-c2ec-473e-bb5c-4780c5025ceb",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -390,6 +398,17 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "MoveOld",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e73bea1f-2ca0-4572-bb5f-cf8f70c0bef5",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Selection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
