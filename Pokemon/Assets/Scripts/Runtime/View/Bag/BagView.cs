@@ -9,28 +9,26 @@ namespace Pekemon
         [SerializeField] CanvasGroup canvasGroup;
 
         //select
-        
+
 
         //list
         [SerializeField] Transform content;
         [SerializeField] BagItemView bagItemView;
 
 
-        
+
 
 
         private void Awake()
         {
-            var playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
-            PlayerInput.UIAction.CancelQueue.Add(Close);
-            playerInput.PlayerInputAction = PlayerInput.UIAction;
+            PlayerInput.UIAction.Cancel = Close;
+            PlayerInput.SetFirst(PlayerInput.UIAction);
         }
 
         public void Close()
         {
-            var playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
-            PlayerInput.UIAction.CancelQueue.Remove(Close);
-            playerInput.PlayerInputAction = PlayerInput.PlayerAction;
+            PlayerInput.UIAction.Cancel = null;
+            PlayerInput.RemoveFirst(PlayerInput.UIAction);
 
             UIManager.Close(gameObject);
             Destroy(gameObject);

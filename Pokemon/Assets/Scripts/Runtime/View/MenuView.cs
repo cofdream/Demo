@@ -27,10 +27,9 @@ namespace Pekemon
         {
             canvasGroup.alpha = 1;
 
-            var playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
-            PlayerInput.UIAction.CancelQueue.Add(Close);
-            PlayerInput.UIAction.ConfirmQueue.Add(SelectMenu);
-            playerInput.PlayerInputAction = PlayerInput.UIAction;
+            PlayerInput.UIAction.Cancel = Close;
+            PlayerInput.UIAction.Confirm = SelectMenu;
+            PlayerInput.SetFirst(PlayerInput.UIAction);
         }
 
         private void Start()
@@ -40,10 +39,9 @@ namespace Pekemon
 
         public void Close()
         {
-            var playerInput = GameObject.Find("PlayerInput").GetComponent<PlayerInput>();
-            PlayerInput.UIAction.CancelQueue.Remove(Close);
-            PlayerInput.UIAction.ConfirmQueue.Remove(SelectMenu);
-            playerInput.PlayerInputAction = PlayerInput.PlayerAction;
+            PlayerInput.UIAction.Cancel = null;
+            PlayerInput.UIAction.Confirm = null;
+            PlayerInput.RemoveFirst(PlayerInput.UIAction);
 
             UIManager.Close(gameObject);
             Destroy(gameObject);

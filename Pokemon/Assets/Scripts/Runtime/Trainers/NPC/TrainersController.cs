@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Pekemon
 {
-    public interface ITriggerable
+    public class TrainersController : MonoBehaviour
     {
-        void PlayerTriggerable(PlayerController playerController);
+        public TrainersConfig config;
+
     }
 }
