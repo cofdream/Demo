@@ -6,7 +6,6 @@ namespace Pekemon
 {
     public class TrainersController : MonoBehaviour
     {
-        public TrainersConfig config;
 
     }
 }

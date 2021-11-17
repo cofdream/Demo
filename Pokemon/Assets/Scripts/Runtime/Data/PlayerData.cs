@@ -31,8 +31,8 @@ namespace Pekemon
 
         public static void Save()
         {
-            var json = JsonUtility.ToJson(instance, true);
-            System.IO.File.WriteAllText("Assets/Resource/PlayerData.json", json);
+            //var json = JsonUtility.ToJson(instance, true);
+            //System.IO.File.WriteAllText("Assets/Resource/PlayerData.json", json);
         }
 
 

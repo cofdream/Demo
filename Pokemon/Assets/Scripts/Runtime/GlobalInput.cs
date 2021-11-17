@@ -37,15 +37,16 @@ namespace Pekemon
         }
     }
 
-    public class PlayerInput : MonoBehaviour
+    public class GlobalInput : MonoBehaviour
     {
         public static InputAction DefaultAction { get; private set; }
         public static InputAction PlayerAction { get; private set; }
         public static InputAction UIAction { get; private set; }
 
+
         private static Stack<InputAction> inputActions;
 
-        static PlayerInput()
+        static GlobalInput()
         {
             DefaultAction = new InputAction("Default");
             PlayerAction = new InputAction("Player");

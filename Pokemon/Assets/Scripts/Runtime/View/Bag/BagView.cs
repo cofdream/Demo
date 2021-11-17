@@ -21,14 +21,14 @@ namespace Pekemon
 
         private void Awake()
         {
-            PlayerInput.UIAction.Cancel = Close;
-            PlayerInput.SetFirst(PlayerInput.UIAction);
+            GlobalInput.UIAction.Cancel = Close;
+            GlobalInput.SetFirst(GlobalInput.UIAction);
         }
 
         public void Close()
         {
-            PlayerInput.UIAction.Cancel = null;
-            PlayerInput.RemoveFirst(PlayerInput.UIAction);
+            GlobalInput.UIAction.Cancel = null;
+            GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
             UIManager.Close(gameObject);
             Destroy(gameObject);

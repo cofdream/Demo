@@ -12,8 +12,6 @@ namespace Pekemon
         [SerializeField] private LayerMask notMoveLayerMask;
         [SerializeField] private LayerMask tiggerLayerMask;
 
-        private GameObject mainGO;
-
         private Vector2 movement;
         private bool isMove;
 
@@ -32,23 +30,18 @@ namespace Pekemon
 
         static PlayerController()
         {
-            PlayerInput.PlayerAction.Menu = () => { UIManager.Get<MenuView>(); };
+            GlobalInput.PlayerAction.Menu = () => { UIManager.Get<MenuView>(); };
 
         }
 
-
-        private void Awake()
-        {
-            mainGO = gameObject;
-        }
 
         private void Start()
         {
-            PlayerInput.DefaultAction.Move = (value) => movement = value;
-            PlayerInput.PlayerAction.Move = PlayerInput.DefaultAction.Move;
-            PlayerInput.PlayerAction.Confirm = ConfirmCallback;
+            GlobalInput.DefaultAction.Move = (value) => movement = value;
+            GlobalInput.PlayerAction.Move = GlobalInput.DefaultAction.Move;
+            GlobalInput.PlayerAction.Confirm = ConfirmCallback;
 
-            PlayerInput.SetFirst(PlayerInput.PlayerAction);
+            GlobalInput.SetFirst(GlobalInput.PlayerAction);
         }
 
         void Update()
@@ -88,7 +81,7 @@ namespace Pekemon
         }
         private void StartMove(Vector3 direction)
         {
-            var startPosition = mainGO.transform.position;
+            var startPosition = transform.position;
             var targetPosition = startPosition + direction;
             var checkPoint = targetPosition + new Vector3(0, 0.5f, 0);
 
@@ -106,7 +99,7 @@ namespace Pekemon
                 this.targetPosition = targetPosition;
 
                 //禁止输入
-                PlayerInput.RemoveFirst(PlayerInput.PlayerAction);
+                GlobalInput.RemoveFirst(GlobalInput.PlayerAction);
             }
         }
 
@@ -136,7 +129,7 @@ namespace Pekemon
             animator.speed = moveSpeed;
 
             moveTime = Time.time - startTime;
-            var position = mainGO.transform.position = Vector3.MoveTowards(mainGO.transform.position, targetPosition, Time.deltaTime * moveSpeed);
+            var position = transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
 
             float distance = Vector3.Distance(position, targetPosition);
             if (distance <= 0.0001f)
@@ -146,7 +139,7 @@ namespace Pekemon
                 animator.SetBool("Walk", false);
 
                 //恢复输入
-                PlayerInput.SetFirst(PlayerInput.PlayerAction);
+                GlobalInput.SetFirst(GlobalInput.PlayerAction);
 
                 MoveEnd?.Invoke();
             }
@@ -166,7 +159,7 @@ namespace Pekemon
         {
             if (isMove) return;
 
-            Vector2 forwardPoint = towards + (Vector2)mainGO.transform.position + new Vector2(0, 0.5f);
+            Vector2 forwardPoint = towards + (Vector2)transform.position + new Vector2(0, 0.5f);
 
             var collider2D = Physics2D.OverlapCircle(forwardPoint, 0.4f, tiggerLayerMask);
             if (collider2D != null)
@@ -190,7 +183,7 @@ namespace Pekemon
                 tempMovement = movement;
             }
 
-            Vector3 position = mainGO.transform.position + new Vector3(tempMovement.x, tempMovement.y + 0.5f, 0);
+            Vector3 position = transform.position + new Vector3(tempMovement.x, tempMovement.y + 0.5f, 0);
             //if (Check(position))
             //{
             //    Gizmos.color = Color.green;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Pekemon
         public int Speed;
 
         public int Skill_Atk;
-        
+
     }
 
 
@@ -73,11 +74,12 @@ namespace Pekemon
         public BattleInfo p2Info;
 
 
+        public Trainers t1;
+        public Trainers t2;
+
+
         IEnumerator Start()
         {
-            //选择操作
-            // 技能 道具 投降 交换Pet
-
             while (true)
             {
                 yield return null;
@@ -139,8 +141,6 @@ namespace Pekemon
 
                     ClearSelect();
                 }
-
-                
             }
 
         }
@@ -218,6 +218,15 @@ namespace Pekemon
                     selectionTargets = new BattlePet[] { p1 },
                 };
             }
+        }
+
+        public static void Start1V1(Trainers t1, Trainers t2)
+        {
+            var battle = new GameObject("Battle").AddComponent<Battle>();
+            battle.t1 = t1;
+            battle.t2 = t2;
+
+            
         }
     }
 }

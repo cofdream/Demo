@@ -6,10 +6,22 @@ namespace Pekemon
 {
     public class BattleInteractive : MonoBehaviour, ITriggerable
     {
-        [SerializeField] private TrainersConfig config;
+        public PetBase[] petBases;
+        public int[] levels;
+
         public void PlayerTriggerable(PlayerController playerController)
         {
-            Debug.Log("Start Battle ");
+            Pet[] pets = new Pet[petBases.Length];
+
+            for (int i = 0; i < petBases.Length; i++)
+            {
+                pets[i] = new Pet(petBases[i], levels[i]);
+            }
+
+            Trainers npc = new Trainers();
+            npc.Pets = pets;
+
+            Battle.Start1V1(GameArchive.Instance.Hero,npc);
         }
     }
 
