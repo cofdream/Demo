@@ -226,7 +226,7 @@ namespace Pekemon
             battle.t1 = t1;
             battle.t2 = t2;
 
-            
+            UIManager.Get<BattleView>();
         }
     }
 }
