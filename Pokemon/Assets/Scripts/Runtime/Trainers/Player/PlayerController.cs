@@ -28,25 +28,39 @@ namespace Pekemon
 
         public bool Stop { get; set; }
 
-        static PlayerController()
+
+        private void OpenMenuView()
         {
-            GlobalInput.PlayerAction.Menu = () => { UIManager.Get<MenuView>(); };
-
+            UIManager.Get<MenuView>();
         }
-
+        private void SetMovement(Vector2 value)
+        {
+            movement = value;
+        }
 
         private void Start()
         {
-            GlobalInput.DefaultAction.Move = (value) => movement = value;
-            GlobalInput.PlayerAction.Move = GlobalInput.DefaultAction.Move;
-            GlobalInput.PlayerAction.Confirm = ConfirmCallback;
+            GlobalInput.PlayerAction.MenuQueue.Add(OpenMenuView);
+
+            GlobalInput.DefaultAction.MoveQueue.Add(SetMovement);
+            GlobalInput.PlayerAction.MoveQueue.Add(SetMovement);
+            GlobalInput.PlayerAction.ConfirmQueue.Add(ConfirmCallback);
 
             GlobalInput.SetFirst(GlobalInput.PlayerAction);
         }
 
+        private void OnDestroy()
+        {
+            GlobalInput.PlayerAction.MenuQueue.Remove(OpenMenuView);
+
+            GlobalInput.DefaultAction.MoveQueue.Remove(SetMovement);
+            GlobalInput.PlayerAction.MoveQueue.Remove(SetMovement);
+            GlobalInput.PlayerAction.ConfirmQueue.Remove(ConfirmCallback);
+        }
+
         void Update()
         {
-            
+
             if (isMove)
             {
                 Moving();

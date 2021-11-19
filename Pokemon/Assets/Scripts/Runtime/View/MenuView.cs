@@ -27,8 +27,8 @@ namespace Pekemon
         {
             canvasGroup.alpha = 1;
 
-            GlobalInput.UIAction.Cancel = Close;
-            GlobalInput.UIAction.Confirm = SelectMenu;
+            GlobalInput.UIAction.CancelQueue.Add(Close);
+            GlobalInput.UIAction.ConfirmQueue.Add(SelectMenu);
             GlobalInput.SetFirst(GlobalInput.UIAction);
         }
 
@@ -39,8 +39,8 @@ namespace Pekemon
 
         public void Close()
         {
-            GlobalInput.UIAction.Cancel = null;
-            GlobalInput.UIAction.Confirm = null;
+            GlobalInput.UIAction.CancelQueue.Remove(Close);
+            GlobalInput.UIAction.ConfirmQueue.Remove(SelectMenu);
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
             UIManager.Close(gameObject);

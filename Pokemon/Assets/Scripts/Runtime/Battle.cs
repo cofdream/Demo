@@ -15,7 +15,6 @@ namespace Pekemon
         public int Speed;
 
         public int Skill_Atk;
-
     }
 
 
@@ -80,6 +79,8 @@ namespace Pekemon
 
         IEnumerator Start()
         {
+            var battleView = UIManager.Get<BattleView>();
+
             while (true)
             {
                 yield return null;
@@ -226,7 +227,7 @@ namespace Pekemon
             battle.t1 = t1;
             battle.t2 = t2;
 
-            UIManager.Get<BattleView>();
+
         }
     }
 }

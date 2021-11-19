@@ -11,13 +11,11 @@ namespace Pekemon
 
         private List<GameObject> uiClones;
 
-        private static Dialog dialogBind;
-
         private static UIManager instance;
 
         private void Awake()
         {
-            Object.DontDestroyOnLoad(this);
+            //Object.DontDestroyOnLoad(this);
 
             uiClones = new List<GameObject>();
 

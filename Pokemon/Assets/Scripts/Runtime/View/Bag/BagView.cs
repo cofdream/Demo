@@ -21,27 +21,27 @@ namespace Pekemon
 
         private void Awake()
         {
-            GlobalInput.UIAction.Cancel = Close;
+            GlobalInput.UIAction.CancelQueue.Add(Close);
             GlobalInput.SetFirst(GlobalInput.UIAction);
         }
 
         public void Close()
         {
-            GlobalInput.UIAction.Cancel = null;
+            GlobalInput.UIAction.CancelQueue.Remove(Close);
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
             UIManager.Close(gameObject);
             Destroy(gameObject);
-        }
+    }
 
-        public void Show(PropData[] props)
+    public void Show(PropData[] props)
+    {
+        int length = props.Length;
+        for (int i = 0; i < length; i++)
         {
-            int length = props.Length;
-            for (int i = 0; i < length; i++)
-            {
-                var item = Instantiate(bagItemView, content);
-                item.Show(props[i]);
-            }
+            var item = Instantiate(bagItemView, content);
+            item.Show(props[i]);
         }
     }
+}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,34 +7,73 @@ using UnityEngine.InputSystem;
 
 namespace Pekemon
 {
+    public class Action<T> where T : Delegate
+    {
+        public Stack<Delegate> Callback;
+
+        public Action()
+        {
+            Callback = new Stack<Delegate>(3);
+        }
+        public T Get()
+        {
+            if (Callback.Count > 0)
+                return (T)Callback.Peek();
+            return null;
+        }
+        public void Add(T action)
+        {
+            if (Callback.Count > 0)
+                if (Callback.Peek() != action)
+                {
+                    Debug.LogWarning("栈顶相同，无法添加");
+                    return;
+                }
+
+            Callback.Push(action);
+        }
+        public void Remove(T action)
+        {
+            if (Callback.Count > 0)
+                if (Callback.Peek() != action)
+                {
+                    Debug.LogWarning("栈顶不同，无法删除。");
+                }
+                else
+                {
+                    Callback.Pop();
+                }
+        }
+        public void Clear()
+        {
+            Callback.Clear();
+            Debug.LogWarning("Clear!!!!!");
+        }
+    }
+
+
     public class InputAction
     {
-        //public List<UnityAction> ConfirmQueue;
-        //public List<UnityAction> CancelQueue;
-        //public List<UnityAction> MenuQueue;
-        //public List<UnityAction> SelectQueue;
-        //public List<UnityAction<Vector2>> MoveQueue;
-
-        //public InputAction()
-        //{
-        //    ConfirmQueue = new List<UnityAction>();
-        //    CancelQueue = new List<UnityAction>();
-        //    MenuQueue = new List<UnityAction>();
-        //    SelectQueue = new List<UnityAction>();
-        //    MoveQueue = new List<UnityAction<Vector2>>();
-        //}
-
         public string Name;
 
-        public UnityAction Confirm;
-        public UnityAction Cancel;
-        public UnityAction Menu;
-        public UnityAction Select;
-        public UnityAction<Vector2> Move;
+        public Action<UnityAction> ConfirmQueue;
+        public Action<UnityAction> CancelQueue;
+        public Action<UnityAction> MenuQueue;
+        public Action<UnityAction> SelectQueue;
+        public Action<UnityAction<Vector2>> MoveQueue;
 
+        public InputAction()
+        {
+        }
         public InputAction(string name)
         {
             Name = name;
+
+            ConfirmQueue = new Action<UnityAction>();
+            CancelQueue = new Action<UnityAction>();
+            MenuQueue = new Action<UnityAction>();
+            SelectQueue = new Action<UnityAction>();
+            MoveQueue = new Action<UnityAction<Vector2>>();
         }
     }
 
@@ -42,6 +82,7 @@ namespace Pekemon
         public static InputAction DefaultAction { get; private set; }
         public static InputAction PlayerAction { get; private set; }
         public static InputAction UIAction { get; private set; }
+        public static InputAction NullAction { get; private set; }
 
 
         private static Stack<InputAction> inputActions;
@@ -51,18 +92,24 @@ namespace Pekemon
             DefaultAction = new InputAction("Default");
             PlayerAction = new InputAction("Player");
             UIAction = new InputAction("UI");
+            NullAction = new InputAction();
 
             inputActions = new Stack<InputAction>(4);
-            inputActions.Push(DefaultAction);
+
+            SetFirst(DefaultAction);
         }
 
         public static void SetFirst(InputAction inputAction)
         {
-            if (inputActions.Count > 0 && inputActions.Peek() == inputAction)
+            if (inputActions.Count > 0)
             {
-                Debug.LogWarning($"当前{typeof(InputAction)}已经在栈顶！");
-                return;
+                if (inputActions.Peek() == inputAction)
+                {
+                    Debug.LogWarning($"当前{typeof(InputAction)}已经在栈顶！");
+                    return;
+                }
             }
+
             inputActions.Push(inputAction);
         }
         public static void RemoveFirst(InputAction inputAction)
@@ -79,28 +126,28 @@ namespace Pekemon
         void OnConfirm()
         {
             if (inputActions.Count > 0)
-                inputActions.Peek()?.Confirm?.Invoke();
+                inputActions.Peek()?.ConfirmQueue.Get()?.Invoke();
         }
         void OnCancel()
         {
             if (inputActions.Count > 0)
-                inputActions.Peek()?.Cancel?.Invoke();
+                inputActions.Peek()?.CancelQueue.Get()?.Invoke();
         }
         void OnMenu()
         {
             if (inputActions.Count > 0)
-                inputActions.Peek()?.Menu?.Invoke();
+                inputActions.Peek()?.MenuQueue.Get()?.Invoke();
         }
         void OnSelect()
         {
             if (inputActions.Count > 0)
-                inputActions.Peek()?.Select?.Invoke();
+                inputActions.Peek()?.SelectQueue.Get()?.Invoke();
         }
 
         void OnMove(InputValue value)
         {
             if (inputActions.Count > 0)
-                inputActions.Peek()?.Move?.Invoke(value.Get<Vector2>());
+                inputActions.Peek()?.MoveQueue.Get()?.Invoke(value.Get<Vector2>());
         }
     }
 }
