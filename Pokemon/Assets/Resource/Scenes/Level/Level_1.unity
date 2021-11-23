@@ -17629,6 +17629,9 @@ MonoBehaviour:
   petBases:
   - {fileID: 11400000, guid: 1149634813daa7a4d9080073e82f16d3, type: 2}
   levels: 05000000
+  petBases2:
+  - {fileID: 11400000, guid: 77981b188b243cc408d390fc60b77551, type: 2}
+  levels2: 05000000
 --- !u!114 &3174133126933978758
 MonoBehaviour:
   m_ObjectHideFlags: 0

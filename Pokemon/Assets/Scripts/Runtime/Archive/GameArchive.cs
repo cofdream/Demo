@@ -31,8 +31,14 @@ namespace Pekemon
             }
         }
 
-        public Trainers Hero;
+        public string Name;
+        public bool Sex;
 
+        public BagData BagData;
+
+        public PetData[] PetDatas;
+
+        public Pet[] pets;
     }
 
     [System.Serializable]

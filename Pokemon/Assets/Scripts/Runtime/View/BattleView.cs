@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,6 +7,32 @@ using UnityEngine.UI;
 
 namespace Pekemon
 {
+    [System.Serializable]
+    public class HUDView
+    {
+        public Image Hp;
+        private RectTransform rectTran;
+
+        private float maxHp;
+
+        private float widthHP;
+        public void Init(int hp)
+        {
+            rectTran = Hp.GetComponent<RectTransform>();
+
+            maxHp = hp;
+            widthHP = rectTran.rect.width;
+        }
+
+        public void SetHP(int value)
+        {
+            rectTran.sizeDelta += new Vector2(value / maxHp, 0);
+            Debug.Log(value);
+        }
+
+
+    }
+
     public class BattleView : MonoBehaviour
     {
         [SerializeField] private CanvasGroup defaultView;
@@ -20,6 +47,9 @@ namespace Pekemon
         public Button Move2;
         public Button Move3;
         public Button Move4;
+
+
+        public HUDView[] hUDViews;
 
 
         private void Awake()
@@ -88,5 +118,8 @@ namespace Pekemon
         {
             Tx_Message.text = "Can you back?";
         }
+
+
+
     }
 }
