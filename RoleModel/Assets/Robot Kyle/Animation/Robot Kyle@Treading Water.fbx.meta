@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 20cef04ff959ea542b4cd82d6d2d11e3
+guid: d93dcd006c1e95441942de4cc254d2f1
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -1610863427237328480
-    second: Walking
+      74: -203655887218126122
+    second: Treading Water
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Treading Water
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 90
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

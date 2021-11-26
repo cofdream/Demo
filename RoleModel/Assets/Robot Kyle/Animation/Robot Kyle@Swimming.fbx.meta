@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 20cef04ff959ea542b4cd82d6d2d11e3
+guid: 37633821fabbdff40aadb6b58dde9e16
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -1610863427237328480
-    second: Walking
+      74: -203655887218126122
+    second: Swimming
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking
+      name: Swimming
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 136
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -53,7 +53,7 @@ ModelImporter:
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
