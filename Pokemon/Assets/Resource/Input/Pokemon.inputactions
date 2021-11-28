@@ -260,6 +260,17 @@
                 },
                 {
                     "name": "",
+                    "id": "8b06d6b3-9022-43ef-b315-e3f217bafe90",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0f283887-7d4d-45d0-b7c6-ee3caa2e523c",
                     "path": "<Keyboard>/x",
                     "interactions": "",

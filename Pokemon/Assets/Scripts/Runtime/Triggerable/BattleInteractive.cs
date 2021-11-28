@@ -31,7 +31,9 @@ namespace Pekemon
             }
 
 
-            Battle.Start1V1(pets[0], pets2[0]);
+            Battle2.StartBattle();
+
+            //Battle.Start1V1(pets[0], pets2[0]);
         }
     }
 }

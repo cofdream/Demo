@@ -52,6 +52,10 @@ namespace Pekemon
         public HUDView[] hUDViews;
 
 
+        [SerializeField] BattkeMask battkeMask;
+        [SerializeField] RoleHUD playerHUD;
+        [SerializeField] RoleHUD enemyHUD;
+
         private void Awake()
         {
 
@@ -119,7 +123,15 @@ namespace Pekemon
             Tx_Message.text = "Can you back?";
         }
 
+        internal void ShowBattleMask()
+        {
+            battkeMask.ShowMaskAnimation(() =>
+            {
+                //显示人物进场
+                playerHUD.RoleEnter();
 
-
+                Debug.Log("Mask End.");
+            });
+        }
     }
 }
