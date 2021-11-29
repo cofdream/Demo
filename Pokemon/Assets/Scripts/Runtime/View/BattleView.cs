@@ -129,6 +129,7 @@ namespace Pekemon
             {
                 //显示人物进场
                 playerHUD.RoleEnter();
+                enemyHUD.RoleEnter();
 
                 Debug.Log("Mask End.");
             });
