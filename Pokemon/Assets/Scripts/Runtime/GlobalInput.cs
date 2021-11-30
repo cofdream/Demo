@@ -24,9 +24,9 @@ namespace Pekemon
         public void Add(T action)
         {
             if (Callback.Count > 0)
-                if (Callback.Peek() != action)
+                if (Callback.Peek() == action)
                 {
-                    Debug.LogWarning("栈顶相同，无法添加");
+                    Debug.LogError("栈顶相同，无法添加");
                     return;
                 }
 
@@ -37,7 +37,7 @@ namespace Pekemon
             if (Callback.Count > 0)
                 if (Callback.Peek() != action)
                 {
-                    Debug.LogWarning("栈顶不同，无法删除。");
+                    Debug.LogError("栈顶不同，无法删除。");
                 }
                 else
                 {
@@ -105,7 +105,7 @@ namespace Pekemon
             {
                 if (inputActions.Peek() == inputAction)
                 {
-                    Debug.LogWarning($"当前{typeof(InputAction)}已经在栈顶！");
+                    Debug.LogError($"当前{typeof(InputAction)}已经在栈顶！");
                     return;
                 }
             }
@@ -116,7 +116,7 @@ namespace Pekemon
         {
             if (inputActions.Count > 0 && inputActions.Peek() != inputAction)
             {
-                Debug.LogWarning($"当前{typeof(InputAction)}不在在栈顶！");
+                Debug.LogError($"当前{typeof(InputAction)}不在在栈顶！");
                 return;
             }
             inputActions.Pop();
