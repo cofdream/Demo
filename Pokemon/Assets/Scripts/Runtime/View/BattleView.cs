@@ -35,66 +35,43 @@ namespace Pekemon
 
     public class BattleView : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup defaultView;
-        [SerializeField] private CanvasGroup message;
-        [SerializeField] private CanvasGroup selectMove;
+        [SerializeField] private ViewBase fightview;
+        [SerializeField] private ViewBase selectOperateView;
+        [SerializeField] private ViewBase selectMove;
 
-        public Text Tx_Message;
-        public TextTypewriter textTypewriter;
-
-
-        public Button Move1;
-        public Button Move2;
-        public Button Move3;
-        public Button Move4;
-
-
-        public HUDView[] hUDViews;
+        private ViewBase curView;
 
 
         [SerializeField] BattkeMask battkeMask;
         [SerializeField] RoleHUD playerHUD;
         [SerializeField] RoleHUD enemyHUD;
 
+        public HUDView[] hUDViews;
+
+
         private void Awake()
         {
-
-            Move4.onClick.AddListener(OnBack);
-
             GlobalInput.UIAction.ConfirmQueue.Add(ClickBtn);
+            GlobalInput.UIAction.CancelQueue.Add(CloeCurrentView);
 
             GlobalInput.SetFirst(GlobalInput.UIAction);
-
-            EventSystem.current.SetSelectedGameObject(Move1.gameObject);
-
-
-            defaultView.alpha = 1;
-            defaultView.blocksRaycasts = true;
-
-            message.alpha = 0;
-            message.blocksRaycasts = false;
-
-            selectMove.alpha = 0;
-            selectMove.blocksRaycasts = false;
-
-
-            Tx_Message.text = "接下来做什么？";
-
-            Move1.onClick.AddListener(OnSelectMove);
         }
 
 
         private void OnDestroy()
         {
             GlobalInput.UIAction.ConfirmQueue.Remove(ClickBtn);
+            GlobalInput.UIAction.CancelQueue.Remove(CloeCurrentView);
 
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
+
+            curView?.Close();
+            curView = null;
         }
 
 
         public void Close()
         {
-
             UIManager.Close(gameObject);
             Destroy(gameObject);
         }
@@ -109,30 +86,40 @@ namespace Pekemon
             }
         }
 
-        private void OnSelectMove()
-        {
-            defaultView.alpha = 0;
-            defaultView.blocksRaycasts = false;
 
-            selectMove.alpha = 1;
-            selectMove.blocksRaycasts = true;
-        }
-
-        private void OnBack()
-        {
-            Tx_Message.text = "Can you back?";
-        }
 
         internal void ShowBattleMask()
         {
             battkeMask.ShowMaskAnimation(() =>
             {
                 //显示人物进场
-                playerHUD.RoleEnter();
-                enemyHUD.RoleEnter();
+                playerHUD.RoleEnter(playerHUD.ThrowPet);
+                enemyHUD.RoleEnter(enemyHUD.ThrowPet);
+
+                ShowSelectOperateView();
 
                 Debug.Log("Mask End.");
             });
+
+        }
+
+        private void CloeCurrentView()
+        {
+            curView?.Close();
+        }
+        private void ShowView(ViewBase viewBase)
+        {
+            curView = viewBase;
+            viewBase.Show();
+        }
+
+        public void ShowFightView()
+        {
+            ShowView(fightview);
+        }
+        public void ShowSelectOperateView()
+        {
+            ShowView(selectOperateView);
         }
     }
 }

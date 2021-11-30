@@ -12,7 +12,7 @@ namespace Pekemon
         // Start is called before the first frame update
         void Start()
         {
-
+            UnityEngine.Debug.Log("start");
         }
 
         // Update is called once per frame
@@ -120,7 +120,14 @@ namespace Pekemon
             }
         }
 
+        private void Awake()
+        {
+            UnityEngine.Debug.Log("awake");
+        }
 
-
+        private void OnDestroy()
+        {
+            UnityEngine.Debug.Log("dis");
+        }
     }
 }

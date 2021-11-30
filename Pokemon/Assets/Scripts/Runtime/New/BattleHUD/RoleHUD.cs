@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Pekemon
 {
@@ -12,12 +13,12 @@ namespace Pekemon
         [SerializeField] float speed;
 
 
-        public void RoleEnter()
+        public void RoleEnter(UnityAction endCallback)
         {
-            StartCoroutine(Enter());
+            StartCoroutine(Enter(endCallback));
         }
 
-        private IEnumerator Enter()
+        private IEnumerator Enter(UnityAction endCallback)
         {
             role.anchoredPosition = startPosition;
 
@@ -29,6 +30,7 @@ namespace Pekemon
                 if (Vector2.Distance(pos, endPosition) < 0.01f)
                 {
                     role.anchoredPosition = endPosition;
+                    endCallback?.Invoke();
                     yield break;
                 }
                 else
@@ -36,7 +38,12 @@ namespace Pekemon
                     role.anchoredPosition = pos;
                 }
             }
+        }
 
+        public void ThrowPet()
+        {
+            role.gameObject.SetActive(false);
+            Debug.Log("Throw Pet.");
         }
     }
 }

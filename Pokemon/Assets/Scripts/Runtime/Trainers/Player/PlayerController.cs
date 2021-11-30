@@ -38,7 +38,7 @@ namespace Pekemon
             movement = value;
         }
 
-        private void Start()
+        private void Awake()
         {
             GlobalInput.PlayerAction.MenuQueue.Add(OpenMenuView);
 
@@ -47,6 +47,8 @@ namespace Pekemon
             GlobalInput.PlayerAction.ConfirmQueue.Add(ConfirmCallback);
 
             GlobalInput.SetFirst(GlobalInput.PlayerAction);
+
+            towards = new Vector2(0, -1);
         }
 
         private void OnDestroy()
@@ -56,11 +58,12 @@ namespace Pekemon
             GlobalInput.DefaultAction.MoveQueue.Remove(SetMovement);
             GlobalInput.PlayerAction.MoveQueue.Remove(SetMovement);
             GlobalInput.PlayerAction.ConfirmQueue.Remove(ConfirmCallback);
+
+            GlobalInput.RemoveFirst(GlobalInput.PlayerAction);
         }
 
         void Update()
         {
-
             if (isMove)
             {
                 Moving();
