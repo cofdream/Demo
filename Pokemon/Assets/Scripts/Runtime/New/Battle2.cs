@@ -12,13 +12,13 @@ namespace Pekemon
         public BattleView battleView;
 
 
-        public static void StartBattle()
+        public static IEnumerator StartBattle()
         {
             CurBattle = new Battle2();
-            CurBattle.StartBattle2();
+            yield return CurBattle.StartBattle2();
         }
 
-        public void StartBattle2()
+        public IEnumerator StartBattle2()
         {
             //Init
             Fight fight = new Fight();
@@ -86,6 +86,20 @@ namespace Pekemon
 
             //设置战斗数据
             //battleView.
+
+            //等待玩家输入
+
+            //计算战斗
+
+
+            //显示结果
+            while (true)
+            {
+                
+
+                yield return null;
+            }
+
         }
     }
 

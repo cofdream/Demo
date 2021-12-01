@@ -14,8 +14,21 @@ namespace Pekemon
         public PetBase[] petBases2;
         public int[] levels2;
 
+        private static bool enter;
+
+        private void OnEnable()
+        {
+            enter = false;
+        }
+
         public void PlayerTriggerable(PlayerController playerController)
         {
+            if (enter)
+            {
+                return;
+            }
+            enter = true;
+
             Pet[] pets = new Pet[petBases.Length];
 
             for (int i = 0; i < petBases.Length; i++)
@@ -31,7 +44,7 @@ namespace Pekemon
             }
 
 
-            Battle2.StartBattle();
+          StartCoroutine(Battle2.StartBattle());
 
             //Battle.Start1V1(pets[0], pets2[0]);
         }
