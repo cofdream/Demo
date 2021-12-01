@@ -90,7 +90,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6188604893867205490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -955,7 +955,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8498869109663958677
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1529,6 +1529,7 @@ MonoBehaviour:
   endPosition: {x: 160, y: 171}
   role: {fileID: 6884406706362350711}
   speed: 300
+  txt_Name: {fileID: 2330542108192039801}
 --- !u!1 &2890730299585867680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,8 +1774,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6982746215167229186}
-  - component: {fileID: 6191316684502864586}
-  - component: {fileID: 7679125928513837797}
   m_Layer: 5
   m_Name: Description
   m_TagString: Untagged
@@ -1802,48 +1801,6 @@ RectTransform:
   m_AnchoredPosition: {x: 320, y: 0}
   m_SizeDelta: {x: -640, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6191316684502864586
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3429672406783073945}
-  m_CullTransparentMesh: 1
---- !u!114 &7679125928513837797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3429672406783073945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: New Text
 --- !u!1 &3444584961939971060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,6 +1892,7 @@ GameObject:
   - component: {fileID: 6103772385901634288}
   - component: {fileID: 8093273610646170953}
   - component: {fileID: 8933278139408652878}
+  - component: {fileID: 6923084541966904947}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2047,7 +2005,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6440785936820103196}
         m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: Btn1
+        m_MethodName: BtnSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2057,6 +2015,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6923084541966904947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491521716826789629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6440785936820103196}
+          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+          m_MethodName: SelectSkill
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3829372456637185364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,10 +2601,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 5566852264848643479}
+  battleView: {fileID: 0}
   btn_1: {fileID: 8933278139408652878}
   btn_2: {fileID: 6876109543104385319}
   btn_3: {fileID: 847863612310547292}
   btn_4: {fileID: 6182744046838602866}
+  btn_Skills:
+  - {fileID: 8933278139408652878}
+  - {fileID: 6876109543104385319}
+  - {fileID: 847863612310547292}
+  - {fileID: 6182744046838602866}
+  txt_Skills:
+  - {fileID: 7157441005603938969}
+  - {fileID: 1600622913734741450}
+  - {fileID: 1814035402297991633}
+  - {fileID: 7804769929891595349}
+  txt_Description: {fileID: 1610413860536114473}
 --- !u!1 &4720076086393315244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,6 +2673,7 @@ MonoBehaviour:
   endPosition: {x: -137, y: -26}
   role: {fileID: 2452149594184873379}
   speed: 300
+  txt_Name: {fileID: 1105334865853379578}
 --- !u!1 &4746163628253983809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2741,11 +2741,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_FontSize: 25
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 25
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2818,6 +2818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 195414691070026263}
+  battleView: {fileID: 0}
   btn_Fight: {fileID: 1757232523030488587}
   btn_Back: {fileID: 2863990543126159669}
 --- !u!1 &4916510512448009516
@@ -2982,6 +2983,7 @@ GameObject:
   - component: {fileID: 5594001801539123450}
   - component: {fileID: 3953137146570695842}
   - component: {fileID: 847863612310547292}
+  - component: {fileID: 6042893668287961912}
   m_Layer: 5
   m_Name: Button_2
   m_TagString: Untagged
@@ -3094,7 +3096,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6440785936820103196}
         m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: Btn3
+        m_MethodName: BtnSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3104,6 +3106,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6042893668287961912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5124552227633707279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6440785936820103196}
+          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+          m_MethodName: SelectSkill
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5150908611306926133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,11 +3202,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_FontSize: 25
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 25
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4008,11 +4039,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_FontSize: 25
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 25
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4171,12 +4202,12 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 2
   m_Text: 'Description
 
     Skill
@@ -4303,11 +4334,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_FontSize: 25
+    m_FontStyle: 1
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 25
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4986,6 +5017,7 @@ GameObject:
   - component: {fileID: 5845475760577071152}
   - component: {fileID: 3280612248752567306}
   - component: {fileID: 6876109543104385319}
+  - component: {fileID: 2026479535839993005}
   m_Layer: 5
   m_Name: Button_1
   m_TagString: Untagged
@@ -5098,7 +5130,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6440785936820103196}
         m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: Btn2
+        m_MethodName: BtnSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5108,6 +5140,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2026479535839993005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213561177480310783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6440785936820103196}
+          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+          m_MethodName: SelectSkill
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8277006262219699070
 GameObject:
   m_ObjectHideFlags: 0
@@ -5353,6 +5414,7 @@ GameObject:
   - component: {fileID: 315035538686100323}
   - component: {fileID: 9072583569795581121}
   - component: {fileID: 6182744046838602866}
+  - component: {fileID: 3584440712132361592}
   m_Layer: 5
   m_Name: Button_3
   m_TagString: Untagged
@@ -5465,7 +5527,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6440785936820103196}
         m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: Btn4
+        m_MethodName: BtnSkill
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5475,6 +5537,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3584440712132361592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708376203965273809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6440785936820103196}
+          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+          m_MethodName: SelectSkill
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8713830247597385845
 GameObject:
   m_ObjectHideFlags: 0

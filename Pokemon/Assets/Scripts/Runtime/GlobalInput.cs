@@ -214,11 +214,12 @@ namespace Pekemon
         }
         public static void RemoveFirst(InputAction inputAction)
         {
-            if (inputActions.Count > 0 && inputActions.Peek() != inputAction)
+            if (inputActions.Peek() != inputAction)
             {
                 Debug.LogError($"当前{typeof(InputAction)}不在在栈顶！");
                 return;
             }
+
             inputActions.Pop();
         }
 
@@ -250,11 +251,13 @@ namespace Pekemon
                 inputActions.Peek()?.MoveInvoke(value.Get<Vector2>());
         }
 
+#pragma warning disable CS0219 // 变量已被赋值，但从未使用过它的值
         private void Update()
         {
             //断点用
             GlobalInput globalInput = this;
             int a = 1;
         }
+#pragma warning restore CS0219 // 变量已被赋值，但从未使用过它的值
     }
 }

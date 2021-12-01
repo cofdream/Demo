@@ -47,6 +47,8 @@ namespace Pekemon
 
         public HUDView[] hUDViews;
 
+        public BPet PlayerPet;
+        public BPet EnemyPet;
 
         private void Awake()
         {
@@ -100,7 +102,6 @@ namespace Pekemon
 
                 Debug.Log("Mask End.");
             });
-
         }
 
 
@@ -120,6 +121,18 @@ namespace Pekemon
         {
             selectOperateView.Show();
             lastShowView = selectOperateView;
+        }
+
+        internal void ShoBP1(BPet p1)
+        {
+            playerHUD.SetPet(p1);
+            PlayerPet = p1;
+        }
+
+        internal void ShoBP2(BPet p2)
+        {
+            enemyHUD.SetPet(p2);
+            EnemyPet = p2;
         }
     }
 }
