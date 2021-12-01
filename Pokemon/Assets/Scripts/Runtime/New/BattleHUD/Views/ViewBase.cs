@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,11 @@ namespace Pekemon
     {
         [SerializeField] protected CanvasGroup canvasGroup;
 
+        public BattleView battleView;
+
         protected virtual void Awake()
         {
-            
+            canvasGroup.alpha = 0;
         }
         public virtual void Show()
         {
@@ -20,5 +23,6 @@ namespace Pekemon
         {
             canvasGroup.alpha = 0;
         }
+
     }
 }

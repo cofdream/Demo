@@ -12,17 +12,6 @@ namespace Pekemon
         public Button btn_Back;
 
 
-        protected override void Awake()
-        {
-            base.Awake();
-            Close();
-        }
-
-        private void OnDestroy()
-        {
-            Close();
-        }
-
         public override void Show()
         {
             base.Show();
@@ -30,7 +19,9 @@ namespace Pekemon
             EventSystem.current.SetSelectedGameObject(btn_Fight.gameObject);
         }
 
-
-
+        public override void Close()
+        {
+            base.Close();
+        }
     }
 }

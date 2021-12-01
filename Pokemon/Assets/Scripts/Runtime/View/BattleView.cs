@@ -39,8 +39,7 @@ namespace Pekemon
         [SerializeField] private ViewBase selectOperateView;
         [SerializeField] private ViewBase selectMove;
 
-        private ViewBase curView;
-
+        private ViewBase lastShowView;
 
         [SerializeField] BattkeMask battkeMask;
         [SerializeField] RoleHUD playerHUD;
@@ -52,21 +51,22 @@ namespace Pekemon
         private void Awake()
         {
             GlobalInput.UIAction.ConfirmQueue.Add(ClickBtn);
-            GlobalInput.UIAction.CancelQueue.Add(CloeCurrentView);
 
             GlobalInput.SetFirst(GlobalInput.UIAction);
+
+            fightview.battleView = this;
+            selectOperateView.battleView = this;
         }
 
 
         private void OnDestroy()
         {
             GlobalInput.UIAction.ConfirmQueue.Remove(ClickBtn);
-            GlobalInput.UIAction.CancelQueue.Remove(CloeCurrentView);
 
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
-            curView?.Close();
-            curView = null;
+            lastShowView?.Close();
+            lastShowView = null;
         }
 
 
@@ -103,23 +103,23 @@ namespace Pekemon
 
         }
 
-        private void CloeCurrentView()
-        {
-            curView?.Close();
-        }
-        private void ShowView(ViewBase viewBase)
-        {
-            curView = viewBase;
-            viewBase.Show();
-        }
 
         public void ShowFightView()
         {
-            ShowView(fightview);
+            fightview.Show();
+            lastShowView = fightview;
         }
+        public void CloseFightView()
+        {
+            fightview.Close();
+            selectOperateView.Show();
+            lastShowView = selectOperateView;
+        }
+
         public void ShowSelectOperateView()
         {
-            ShowView(selectOperateView);
+            selectOperateView.Show();
+            lastShowView = selectOperateView;
         }
     }
 }

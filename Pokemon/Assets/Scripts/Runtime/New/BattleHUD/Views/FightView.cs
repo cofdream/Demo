@@ -8,23 +8,11 @@ namespace Pekemon
 {
     public class FightView : ViewBase
     {
-        [SerializeField] Selectable btn_1;
-        [SerializeField] Selectable btn_2;
-        [SerializeField] Selectable btn_3;
-        [SerializeField] Selectable btn_4;
+        [SerializeField] Button btn_1;
+        [SerializeField] Button btn_2;
+        [SerializeField] Button btn_3;
+        [SerializeField] Button btn_4;
 
-        protected override void Awake()
-        {
-            base.Awake();
-            base.Close();
-        }
-
-
-        private void OnDestroy()
-        {
-            Close();
-
-        }
 
         public override void Show()
         {
@@ -32,58 +20,32 @@ namespace Pekemon
 
             EventSystem.current.SetSelectedGameObject(btn_1.gameObject);
 
-            GlobalInput.UIAction.ConfirmQueue.Add(Select);
+            GlobalInput.UIAction.CancelQueue.Add(CloseSelf);
         }
         public override void Close()
         {
             base.Close();
-
-            GlobalInput.UIAction.ConfirmQueue.Remove(Select);
+            GlobalInput.UIAction.CancelQueue.Remove(CloseSelf);
         }
 
-        private void Select()
+        private void CloseSelf()
         {
-            var go = EventSystem.current.currentSelectedGameObject;
-            if (go == null)
-            {
-                Debug.LogError("select Null.");
-                return;
-            }
-            if (btn_1.gameObject == go)
-            {
-                Select_1();
-            }
-            else if (btn_2.gameObject == go)
-            {
-                Select_2();
-            }
-            else if (btn_3.gameObject == go)
-            {
-                Select_3();
-            }
-            else if (btn_4.gameObject == go)
-            {
-                Select_4();
-            }
-            else
-            {
-                Debug.LogError("select not exist.");
-            }
+            base.battleView.CloseFightView();
         }
 
-        private void Select_1()
+        public void Btn1()
         {
             Debug.Log(1);
         }
-        private void Select_2()
+        public void Btn2()
         {
             Debug.Log(2);
         }
-        private void Select_3()
+        public void Btn3()
         {
             Debug.Log(3);
         }
-        private void Select_4()
+        public void Btn4()
         {
             Debug.Log(4);
         }
