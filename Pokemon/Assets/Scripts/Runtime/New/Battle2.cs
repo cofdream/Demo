@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Pekemon
 {
@@ -20,11 +21,17 @@ namespace Pekemon
 
         public IEnumerator StartBattle2()
         {
+            isEnd = false;
             //Init
             Fight fight = new Fight();
-            BPet p1 = new BPet()
+            BPet p1 = leftPet = new BPet()
             {
+                ATK = 10,
                 Name = "P1",
+                Hp = 40,
+                MaxHp = 40,
+                battle = this,
+                isLeft = true,
                 Skills = new Skill[]
                 {
                     new Skill()
@@ -43,9 +50,14 @@ namespace Pekemon
                     },
                 },
             };
-            BPet p2 = new BPet()
+            BPet p2 = rightPet = new BPet()
             {
+                ATK = 10,
                 Name = "P2",
+                Hp = 40,
+                MaxHp = 40,
+                battle = this,
+                isLeft = false,
                 Skills = new Skill[]
                 {
                     new Skill()
@@ -64,6 +76,7 @@ namespace Pekemon
                     },
                 },
             };
+
             //init ui
             battleView = UIManager.Get<BattleView>();
 
@@ -88,30 +101,87 @@ namespace Pekemon
             //battleView.
 
             //等待玩家输入
-
-            //计算战斗
-
-
-            //显示结果
             while (true)
             {
-                
+                if (p1.selectSkillIndex == null || p2.selectSkillIndex == null)
+                {
+                    yield return null;
+                }
 
+                if (p1.selectSkillIndex != null && p2.selectSkillIndex != null)
+                {
+                    //计算战斗
+                    p1.Skills[p1.selectSkillIndex.Value].Cast(p1, this);
+
+                    if (isEnd)
+                    {
+                        Debug.Log($"{diePet.Name} dide.");
+                        break;
+                    }
+
+                    p2.Skills[p2.selectSkillIndex.Value].Cast(p2, this);
+                    if (isEnd)
+                    {
+                        Debug.Log($"{diePet.Name} dide.");
+                        break;
+                    }
+                }
+
+
+                //显示结果
                 yield return null;
             }
 
+            battleView.Close();
+        }
+
+        private BPet leftPet;
+        private BPet rightPet;
+        public BPet GetTarget(BPet pet)
+        {
+            if (pet.isLeft)
+            {
+                return rightPet;
+            }
+            return leftPet;
+        }
+
+
+        public bool isEnd = true;
+        public BPet diePet;
+        public void SetDieRole(BPet pet)
+        {
+            isEnd = true;
+            diePet = pet;
         }
     }
 
+
+
     public class BPet
     {
+
+        public int ATK;
         public int Hp;
         public int MaxHp;
 
         public string Name;
+        public bool isLeft;
 
         public Skill[] Skills;
+
+        public int? selectSkillIndex = null;
+
+        public Battle2 battle;
+
+
+        public void SetActionId(int index)
+        {
+            Skills[index].PP--;
+            selectSkillIndex = index;
+        }
     }
+
     public class Skill
     {
         public string Name;
@@ -119,13 +189,26 @@ namespace Pekemon
         public int PP;
         public int MaxPP;
         public string Type;
+
+        public void Cast(BPet p1, Battle2 battle2)
+        {
+            Debug.Log("cast " + Name);
+
+            var target = battle2.GetTarget(p1);
+            var hp = target.Hp - p1.ATK;
+
+            if (hp <= 0)
+            {
+                hp = 0;
+                battle2.SetDieRole(target);
+            }
+            target.Hp = hp;
+        }
     }
 
     public class Fight
     {
 
     }
-
-
 
 }

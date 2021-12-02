@@ -185,7 +185,7 @@ namespace Pekemon
         public static InputAction NullAction { get; private set; }
 
 
-        private static Stack<InputAction> inputActions;
+        private static List<InputAction> inputActions;
 
         static GlobalInput()
         {
@@ -194,7 +194,7 @@ namespace Pekemon
             UIAction = new InputAction("UI");
             NullAction = new InputAction();
 
-            inputActions = new Stack<InputAction>(4);
+            inputActions = new List<InputAction>(4);
 
             SetFirst(DefaultAction);
         }
@@ -203,52 +203,54 @@ namespace Pekemon
         {
             if (inputActions.Count > 0)
             {
-                if (inputActions.Peek() == inputAction)
+                if (inputActions[inputActions.Count - 1] == inputAction)
                 {
-                    Debug.LogError($"当前{typeof(InputAction)}已经在栈顶！");
+                    Debug.LogError($"当前 {inputAction.Name} 已存在！");
                     return;
                 }
             }
 
-            inputActions.Push(inputAction);
+            inputActions.Add(inputAction);
         }
         public static void RemoveFirst(InputAction inputAction)
         {
-            if (inputActions.Peek() != inputAction)
+            if (inputActions.Contains(inputAction) == false)
             {
-                Debug.LogError($"当前{typeof(InputAction)}不在在栈顶！");
+                Debug.LogError($"当前 Input {inputAction.Name} 不在在！");
                 return;
             }
 
-            inputActions.Pop();
+            inputActions.Remove(inputAction);
+        }
+
+        private static InputAction Get()
+        {
+            if (inputActions.Count > 0)
+                return inputActions[inputActions.Count - 1];
+            return null;
         }
 
 
         void OnConfirm()
         {
-            if (inputActions.Count > 0)
-                inputActions.Peek()?.ConfirmInvoke();
+            Get()?.ConfirmInvoke();
         }
         void OnCancel()
         {
-            if (inputActions.Count > 0)
-                inputActions.Peek()?.CancelInvoke();
+            Get()?.CancelInvoke();
         }
         void OnMenu()
         {
-            if (inputActions.Count > 0)
-                inputActions.Peek()?.MenuInvoke();
+            Get()?.MenuInvoke();
         }
         void OnSelect()
         {
-            if (inputActions.Count > 0)
-                inputActions.Peek()?.SelectInvoke();
+            Get()?.SelectInvoke();
         }
 
         void OnMove(InputValue value)
         {
-            if (inputActions.Count > 0)
-                inputActions.Peek()?.MoveInvoke(value.Get<Vector2>());
+            Get()?.MoveInvoke(value.Get<Vector2>());
         }
 
 #pragma warning disable CS0219 // 变量已被赋值，但从未使用过它的值

@@ -25,3 +25,4 @@ MonoBehaviour:
     TypeName: BagView
   - Prefab: {fileID: 7517108645613337764, guid: 650e1c2d4f3f0fd438ea9580139a398d, type: 3}
     TypeName: PetView
+  UIMono: {fileID: 7674966574623552200, guid: adaa76e38c437b14eb637c05beb5a9a0, type: 3}

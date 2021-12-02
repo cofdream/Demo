@@ -67,7 +67,10 @@ namespace Pekemon
 
         public void BtnSkill()
         {
-            Debug.Log(selectIndex);
+            battleView.PlayerPet.SetActionId(selectIndex);
+            int enemySIndex = Random.Range(0, battleView.EnemyPet.Skills.Length);
+            battleView.EnemyPet.SetActionId(enemySIndex);
+            Debug.Log(enemySIndex);
         }
     }
 }

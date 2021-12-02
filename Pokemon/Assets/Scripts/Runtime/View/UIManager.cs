@@ -40,6 +40,7 @@ namespace Pekemon
         public static void Close(GameObject ui)
         {
             //instance.uiClones.Remove(ui);
+            
         }
     }
 }

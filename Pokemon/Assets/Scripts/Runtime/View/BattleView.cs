@@ -74,6 +74,9 @@ namespace Pekemon
 
         public void Close()
         {
+            lastShowView?.Close();
+            lastShowView = null;
+
             UIManager.Close(gameObject);
             Destroy(gameObject);
         }
@@ -104,21 +107,30 @@ namespace Pekemon
             });
         }
 
+        private void CloseBattleMask()
+        {
+            battkeMask.ShowMaskAnimation(null);
+        }
 
         public void ShowFightView()
         {
+            lastShowView?.Close();
+
             fightview.Show();
             lastShowView = fightview;
         }
         public void CloseFightView()
         {
-            fightview.Close();
+            lastShowView?.Close();
+
             selectOperateView.Show();
             lastShowView = selectOperateView;
         }
 
         public void ShowSelectOperateView()
         {
+            lastShowView?.Close();
+
             selectOperateView.Show();
             lastShowView = selectOperateView;
         }
