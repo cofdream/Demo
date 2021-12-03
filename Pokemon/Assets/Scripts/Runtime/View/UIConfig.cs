@@ -7,8 +7,6 @@ namespace Pekemon
     public class UIConfig : ScriptableObject
     {
         public UIStyle[] ui;
-
-        public MonoBehaviour UIMono;
     }
 
     [System.Serializable]

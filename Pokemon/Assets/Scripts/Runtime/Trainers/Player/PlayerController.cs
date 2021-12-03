@@ -31,7 +31,7 @@ namespace Pekemon
 
         private void OpenMenuView()
         {
-            UIManager.Get<MenuView>();
+            UIFractory.GetUI<UIMenu>().Show();
         }
         private void SetMovement(Vector2 value)
         {

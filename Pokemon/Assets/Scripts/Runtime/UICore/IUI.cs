@@ -4,11 +4,8 @@ using UnityEngine;
 
 namespace Pekemon
 {
-
-
-    //public abstract class UIBase : MonoBehaviour
-    public interface UIBase
+    public interface IUI
     {
-      
+
     }
 }
