@@ -28,6 +28,7 @@ namespace Pekemon
 
         public bool Stop { get; set; }
 
+        public Pet[] pets;
 
         private void OpenMenuView()
         {

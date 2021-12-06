@@ -6,34 +6,30 @@ namespace Pekemon
 {
     public class BattleInteractive : MonoBehaviour, ITriggerable
     {
-        [Header("player")]
         public PetBase[] petBases;
         public int[] levels;
 
-        [Header("emeny")]
-        public PetBase[] petBases2;
-        public int[] levels2;
-
         public void PlayerTriggerable(PlayerController playerController)
         {
-            Pet[] pets = new Pet[petBases.Length];
+            var trainersPlayer = new GameObject("Player Trainers").AddComponent<Trainers>();
+            trainersPlayer.Pets = playerController.pets;
 
-            for (int i = 0; i < petBases.Length; i++)
+            var trainersNPC = new GameObject("NPC Trainers").AddComponent<Trainers>();
+            int length = petBases.Length;
+            var pets = new Pet[length];
+            for (int i = 0; i < length; i++)
             {
                 pets[i] = new Pet(petBases[i], levels[i]);
             }
+            trainersNPC.Pets = pets;
 
-            Pet[] pets2 = new Pet[petBases.Length];
+            foreach (var item in trainersPlayer.Pets)
+                item.Hp = item.MaxHp;
 
-            for (int i = 0; i < petBases.Length; i++)
-            {
-                pets2[i] = new Pet(petBases2[i], levels2[i]);
-            }
+            foreach (var item in trainersNPC.Pets)
+                item.Hp = item.MaxHp;
 
-
-         StartCoroutine(Battle2.StartBattle());
-            
-            //Battle.Start1V1(pets[0], pets2[0]);
+            Battle.CreateBattleWord(trainersPlayer, trainersNPC);
         }
     }
 }

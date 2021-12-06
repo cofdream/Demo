@@ -11,7 +11,7 @@ namespace Pekemon
 
         public UIMenu()
         {
-            ui = GetBind<UIMenuMono>("Assets/Resource/Views/MenuView.prefab");
+            ui = UIFractory.GetBind<UIMenuMono>("Assets/Resource/Views/MenuView.prefab");
             ui.CanvasGroup.alpha = 0;
 
             ui.Btn_Pokedex.onClick.AddListener(OpenUIPokedex);
@@ -21,13 +21,7 @@ namespace Pekemon
 
             EventSystem.current.SetSelectedGameObject(ui.Btn_Pokedex.gameObject);
         }
-        private static T GetBind<T>(string key) where T : MonoBehaviour
-        {
-            GameObject go = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(key);
-            go = GameObject.Instantiate(go, GameObject.Find("Canvas").transform);
-            go.TryGetComponent<T>(out T bind);
-            return bind;
-        }
+
 
         public void Dispose()
         {

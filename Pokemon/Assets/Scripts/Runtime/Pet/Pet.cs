@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Pet
 {
-   [SerializeField] private PetBase petBase;
-   [SerializeField] private int level;
+    [SerializeField] private PetBase petBase;
+    [SerializeField] private int level;
 
     public Move[] moves;
 
@@ -20,6 +20,7 @@ public class Pet
 
     public PetBase PetBase => petBase;
     public int Level => level;
+
 
     public Pet(PetBase petBase, int level)
     {

@@ -6,6 +6,6 @@ namespace Pekemon
 {
     public class TrainersController : MonoBehaviour
     {
-
+        public Pet[] Pets;
     }
 }

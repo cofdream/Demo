@@ -65,11 +65,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: b88882759dcfc8c40ba0ca96a0d6fa3e, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -108,7 +108,7 @@ RectTransform:
   - {fileID: 2317578896751322477}
   - {fileID: 8173354882641870904}
   m_Father: {fileID: 2391442149228799054}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -149,10 +149,10 @@ RectTransform:
   m_Father: {fileID: 8860505398471762635}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 245, y: -91}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8113032398604456808
 CanvasRenderer:
@@ -301,11 +301,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: b88882759dcfc8c40ba0ca96a0d6fa3e, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -526,6 +526,81 @@ MonoBehaviour:
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &829304391156398895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 663284648694917340}
+  - component: {fileID: 3984101537995624440}
+  - component: {fileID: 6008109216623422968}
+  m_Layer: 5
+  m_Name: Pet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &663284648694917340
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829304391156398895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2391442149228799054}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 160, y: 88}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3984101537995624440
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829304391156398895}
+  m_CullTransparentMesh: 1
+--- !u!114 &6008109216623422968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829304391156398895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -973,7 +1048,7 @@ RectTransform:
   - {fileID: 8118197702705256576}
   - {fileID: 7602781362482117519}
   m_Father: {fileID: 5273845778373127408}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1271,7 +1346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1421,7 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.20754719, g: 0.2065682, b: 0.2065682, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -1466,7 +1541,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5273845778373127408}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -1490,7 +1565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2391442149228799054
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1502,6 +1577,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 663284648694917340}
   - {fileID: 6188604893867205490}
   - {fileID: 6884406706362350711}
   - {fileID: 6070085569033777214}
@@ -1531,6 +1607,9 @@ MonoBehaviour:
   role: {fileID: 6884406706362350711}
   speed: 300
   txt_Name: {fileID: 2330542108192039801}
+  txt_Level: {fileID: 3221106660252964102}
+  img_HP: {fileID: 2792416731542896783}
+  img_Pet: {fileID: 6008109216623422968}
 --- !u!225 &1126054126355710283
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1539,7 +1618,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2823668628361730471}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1650,7 +1729,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5273845778373127408}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -1691,10 +1770,10 @@ RectTransform:
   m_Father: {fileID: 8860505398471762635}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 245, y: -31}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8407745527000423411
 CanvasRenderer:
@@ -1788,7 +1867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6982746215167229186}
   m_Layer: 5
-  m_Name: Description
+  m_Name: DescriptionBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1907,7 +1986,7 @@ GameObject:
   - component: {fileID: 8933278139408652878}
   - component: {fileID: 6923084541966904947}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2015,19 +2094,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8209905417399615994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6440785936820103196}
-        m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: BtnSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6923084541966904947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2045,14 +2112,14 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6440785936820103196}
-          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+        - m_Target: {fileID: 7228724107312533850}
+          m_TargetAssemblyTypeName: Pekemon.BattleMono, Pekemon.Runtime
           m_MethodName: SelectSkill
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -2104,7 +2171,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3829372456637185364}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
   m_Name: 
@@ -2270,7 +2337,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2391442149228799054}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -2490,7 +2557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6884406706362350711
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2504,7 +2571,7 @@ RectTransform:
   m_Children:
   - {fileID: 5236229641931736654}
   m_Father: {fileID: 2391442149228799054}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2559,7 +2626,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7416539617862029056}
   - component: {fileID: 5566852264848643479}
-  - component: {fileID: 6440785936820103196}
   m_Layer: 5
   m_Name: FightView
   m_TagString: Untagged
@@ -2601,31 +2667,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6440785936820103196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4667597315219538210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28429685f335145468f2be1f1d614e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 5566852264848643479}
-  battleView: {fileID: 0}
-  btn_Skills:
-  - {fileID: 8933278139408652878}
-  - {fileID: 6876109543104385319}
-  - {fileID: 847863612310547292}
-  - {fileID: 6182744046838602866}
-  txt_Skills:
-  - {fileID: 7157441005603938969}
-  - {fileID: 1600622913734741450}
-  - {fileID: 1814035402297991633}
-  - {fileID: 7804769929891595349}
-  txt_Description: {fileID: 1610413860536114473}
 --- !u!1 &4720076086393315244
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,7 +2684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5273845778373127408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2655,6 +2696,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1473013417909794059}
   - {fileID: 8498869109663958677}
   - {fileID: 2452149594184873379}
   - {fileID: 1865303940381475878}
@@ -2684,6 +2726,9 @@ MonoBehaviour:
   role: {fileID: 2452149594184873379}
   speed: 300
   txt_Name: {fileID: 1105334865853379578}
+  txt_Level: {fileID: 7880813113036711798}
+  img_HP: {fileID: 234149606611474622}
+  img_Pet: {fileID: 3864695231051039108}
 --- !u!225 &4730051297206308960
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2692,7 +2737,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4720076086393315244}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2785,14 +2830,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7409544750961540198}
   - component: {fileID: 195414691070026263}
-  - component: {fileID: 6481238227847403092}
   m_Layer: 5
-  m_Name: SelectOperateView
+  m_Name: SelectOperate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7409544750961540198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2827,22 +2871,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6481238227847403092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4896559081611936802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb6180cf18c76d74b8e4f6b282bafc21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 195414691070026263}
-  battleView: {fileID: 0}
-  btn_Fight: {fileID: 1757232523030488587}
-  btn_Back: {fileID: 2863990543126159669}
 --- !u!1 &4916510512448009516
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,7 +3035,7 @@ GameObject:
   - component: {fileID: 847863612310547292}
   - component: {fileID: 6042893668287961912}
   m_Layer: 5
-  m_Name: Button_2
+  m_Name: Button_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3115,19 +3143,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1864664109207148327}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6440785936820103196}
-        m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: BtnSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6042893668287961912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3145,14 +3161,14 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6440785936820103196}
-          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+        - m_Target: {fileID: 7228724107312533850}
+          m_TargetAssemblyTypeName: Pekemon.BattleMono, Pekemon.Runtime
           m_MethodName: SelectSkill
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 3
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -4164,7 +4180,7 @@ GameObject:
   - component: {fileID: 1566533099025413125}
   - component: {fileID: 1610413860536114473}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4460,7 +4476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2452149594184873379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4474,7 +4490,7 @@ RectTransform:
   m_Children:
   - {fileID: 8373001014270736435}
   m_Father: {fileID: 5273845778373127408}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4575,15 +4591,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797e3259712f6ad44aa3c7154f98beeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fightview: {fileID: 6440785936820103196}
-  selectOperateView: {fileID: 6481238227847403092}
-  selectMove: {fileID: 7489960818400292891}
   battkeMask: {fileID: 1109684086437322192}
   playerHUD: {fileID: 6194160185177260467}
   enemyHUD: {fileID: 550919908433859726}
   hUDViews:
   - Hp: {fileID: 234149606611474622}
   - Hp: {fileID: 2792416731542896783}
+  selectCG: {fileID: 195414691070026263}
+  btn_Fight: {fileID: 1757232523030488587}
+  btn_Back: {fileID: 2863990543126159669}
+  skillCG: {fileID: 5566852264848643479}
+  btn_Skills:
+  - {fileID: 8933278139408652878}
+  - {fileID: 6876109543104385319}
+  - {fileID: 847863612310547292}
+  - {fileID: 6182744046838602866}
+  txt_Skills:
+  - {fileID: 7157441005603938969}
+  - {fileID: 1600622913734741450}
+  - {fileID: 1814035402297991633}
+  - {fileID: 7804769929891595349}
+  txt_Description: {fileID: 1610413860536114473}
 --- !u!1 &7415705796758685863
 GameObject:
   m_ObjectHideFlags: 0
@@ -4612,7 +4640,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2391442149228799054}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -4653,10 +4681,10 @@ RectTransform:
   m_Father: {fileID: 8860505398471762635}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 85, y: -31}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &327553307775079118
 CanvasRenderer:
@@ -4739,19 +4767,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4989447323272590906}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7228724107312533850}
-        m_TargetAssemblyTypeName: Pekemon.BattleView, Pekemon.Runtime
-        m_MethodName: ShowFightView
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7658182062673074931
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,10 +4802,10 @@ RectTransform:
   m_Father: {fileID: 8860505398471762635}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 85, y: -91}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1974009068135982420
 CanvasRenderer:
@@ -4873,6 +4889,81 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &7997373682843481764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473013417909794059}
+  - component: {fileID: 4473156459626089769}
+  - component: {fileID: 3864695231051039108}
+  m_Layer: 5
+  m_Name: Pet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1473013417909794059
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997373682843481764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5273845778373127408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -145, y: -111}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4473156459626089769
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997373682843481764}
+  m_CullTransparentMesh: 1
+--- !u!114 &3864695231051039108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997373682843481764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8029653307051759288
 GameObject:
   m_ObjectHideFlags: 0
@@ -5041,7 +5132,7 @@ GameObject:
   - component: {fileID: 6876109543104385319}
   - component: {fileID: 2026479535839993005}
   m_Layer: 5
-  m_Name: Button_1
+  m_Name: Button_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5149,19 +5240,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7711287214072433198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6440785936820103196}
-        m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: BtnSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2026479535839993005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5179,14 +5258,14 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6440785936820103196}
-          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+        - m_Target: {fileID: 7228724107312533850}
+          m_TargetAssemblyTypeName: Pekemon.BattleMono, Pekemon.Runtime
           m_MethodName: SelectSkill
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -5328,7 +5407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.20754719, g: 0.2065682, b: 0.2065682, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -5438,7 +5517,7 @@ GameObject:
   - component: {fileID: 6182744046838602866}
   - component: {fileID: 3584440712132361592}
   m_Layer: 5
-  m_Name: Button_3
+  m_Name: Button_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5546,19 +5625,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1934975576397962752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6440785936820103196}
-        m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
-        m_MethodName: BtnSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3584440712132361592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5576,14 +5643,14 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6440785936820103196}
-          m_TargetAssemblyTypeName: Pekemon.FightView, Pekemon.Runtime
+        - m_Target: {fileID: 7228724107312533850}
+          m_TargetAssemblyTypeName: Pekemon.BattleMono, Pekemon.Runtime
           m_MethodName: SelectSkill
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
+            m_IntArgument: 4
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -5939,7 +6006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5520622035689742294
 RectTransform:
   m_ObjectHideFlags: 0

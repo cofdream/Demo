@@ -5,114 +5,70 @@ using UnityEngine.Events;
 
 namespace Pekemon
 {
-
-    public class BattlePet
+    public class Battle : MonoBehaviour
     {
-        private Pet pet;
+        public static UIBattle UIBattle;
+        public static Trainers left;
+        public static Trainers right;
 
-        private UnityAction selfDef;
-
-        public HUDView HUDView;
-
-        public BattlePet(Pet pet, UnityAction selfDef)
+        public static void CreateBattleWord(Trainers p1, Trainers p2)
         {
-            this.pet = pet;
-
-            this.pet.Hp = this.pet.MaxHp;
-
-            this.selfDef = selfDef;
+            left = p1;
+            right = p2;
+            new GameObject("Battle").AddComponent<Battle>();
         }
-
-        public void Init()
+        public static Trainers GetTarget(Trainers trainers)
         {
-            HUDView.Init(this.pet.Hp);
-        }
-
-        internal void Run(BattlePet pet)
-        {
-            pet.Damage((int)(this.pet.Attack * 0.2f));
-        }
-
-        private void Damage(int damage)
-        {
-            pet.Hp -= damage;
-
-            if (pet.Hp <= 0)
+            if (trainers == left)
             {
-                pet.Hp = 0;
-
-                selfDef();
+                return right;
             }
             else
             {
-                
-            }
-
-            HUDView.SetHP(pet.Hp);
-
-        }
-    }
-
-    public class Battle : MonoBehaviour
-    {
-        private static Battle instance;
-        public static Battle Instance => instance;
-
-        public BattlePet pet;
-        public BattlePet pet2;
-
-        public int Round;
-
-        public bool Next;
-
-        IEnumerator Start()
-        {
-            var battleView = UIManager.Get<BattleView>();
-
-            pet.HUDView = battleView.hUDViews[0];
-            pet2.HUDView = battleView.hUDViews[1];
-
-            pet.Init();
-            pet2.Init();
-
-            while (true)
-            {
-                yield return null;
-
-                if (Next)
-                {
-                    Next = false;
-
-
-                    pet.Run(pet2);
-
-                    pet2.Run(pet);
-
-                    Round++;
-                }
+                return left;
             }
         }
+        public static void EndBattle(Trainers trainers)
+        {
+            Debug.Log($"{trainers.gameObject.name}没有可以继续战斗的宠物了。");
+            Debug.Log("战斗结束");
 
-        private void P1Win()
-        {
-            Debug.Log("p1 Win.");
-            Debug.Log(Round);
-            StopAllCoroutines();
-        }
-        private void P2Win()
-        {
-            Debug.Log("p2 Win.");
-            Debug.Log(Round);
-            StopAllCoroutines();
+            UIBattle.Close();
+            UIBattle = null;
         }
 
-        public static void Start1V1(Pet p1, Pet p2)
+
+        void Start()
         {
-            instance = new GameObject("Battle").AddComponent<Battle>();
-            instance.pet = new BattlePet(p1, instance.P2Win);
-            instance.pet2 = new BattlePet(p2, instance.P1Win);
-
-
+            StartCoroutine(Run());
         }
+        static IEnumerator Run()
+        {
+            UIBattle = UIFractory.GetUI<UIBattle>();
+
+            right.UseInput = true;
+
+            UIBattle.CreateTrainers(left, right);
+
+
+            Debug.Log("wait trainers input.");
+
+            yield return UIBattle.ShowEnterBattleMask();
+
+            yield return UIBattle.ShowRoleEnterBattle();
+
+            Debug.Log("start battle.");
+
+            left.ZHPet();
+            yield return UIBattle.ZHPet(true);
+
+            right.ZHPet();
+            yield return UIBattle.ZHPet(false);
+
+            UIBattle.ShowSelectOperateView();
+
+            yield return null;
+        }
+
     }
 }

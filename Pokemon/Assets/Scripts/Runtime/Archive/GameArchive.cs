@@ -40,11 +40,4 @@ namespace Pekemon
 
         public Pet[] pets;
     }
-
-    [System.Serializable]
-    public class Trainers
-    {
-        public Pet[] Pets;
-    }
-
 }
