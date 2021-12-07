@@ -13,6 +13,7 @@ namespace Pekemon
         public RoleHUD roleHUD;
         internal bool UseInput;
 
+
         private void Update()
         {
             if (UseInput == false)

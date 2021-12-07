@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Pekemon
 {
@@ -19,29 +20,50 @@ namespace Pekemon
         {
             ui = UIFractory.GetBind<BattleMono>("Assets/Resource/Views/UIBattle.prefab");
 
-
-            GlobalInput.UIAction.CancelQueue.Add(CloseView);
             GlobalInput.SetFirst(GlobalInput.UIAction);
 
             //select
-            ui.btn_Fight.onClick.AddListener(SelectBtnSkill);
+            ui.btn_Fight.onClick.AddListener(OpenSelectSkillView);
             ui.btn_Back.onClick.AddListener(SelectBtnBack);
 
             //selectSkill
-            ui.SelectSkillCallback = SelectSkill;
-            ui.CastSkillCallback = CastSkill;
+            int length = ui.Skills.Length;
+            for (int i = 0; i < length; i++)
+            {
+                var entries = ui.Skills[i].triggers;
 
+                EventTrigger.Entry entry;
+
+                entry = new EventTrigger.Entry
+                {
+                    eventID = EventTriggerType.Select
+                };
+
+                int index = i;
+                entry.callback.AddListener((BaseEventData data) =>
+                {
+                    selectSkillIndex = index;
+                    SelectSkill();
+                });
+                entries.Add(entry);
+
+                entry = new EventTrigger.Entry
+                {
+                    eventID = EventTriggerType.PointerClick
+                };
+                entry.callback.AddListener(CastSkill);
+                entries.Add(entry);
+            }
 
             EventSystem.current.SetSelectedGameObject(ui.btn_Fight.gameObject);
         }
 
         public void Close()
         {
-            GlobalInput.UIAction.CancelQueue.Remove(CloseView);
 
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
-            ui.btn_Fight.onClick.RemoveListener(SelectBtnSkill);
+            ui.btn_Fight.onClick.RemoveListener(OpenSelectSkillView);
             ui.btn_Back.onClick.RemoveListener(SelectBtnBack);
 
             GameObject.Destroy(ui.gameObject);
@@ -58,14 +80,17 @@ namespace Pekemon
             for (int i = 0; i < 4; i++)
             {
                 var move = trainers.CurPet.moves[i];
-                if (move == null)
+                if (move.MoveBase == null)
                 {
                     ui.txt_Skills[i].text = "--";
-                    ui.btn_Skills[i].interactable = false;
+
+                    ui.Skills[i].GetComponent<Button>().enabled = false;
                 }
                 else
                 {
                     ui.txt_Skills[i].text = move.MoveBase.Name;
+
+                    ui.Skills[i].GetComponent<Button>().enabled = true;
                 }
             }
         }
@@ -74,7 +99,8 @@ namespace Pekemon
 
         public void ShowSelectOperateView()
         {
-            CloseView();
+            if ((object)curCG != null) curCG.alpha = 0;
+            ui.selectCG.alpha = 1;
         }
 
         public IEnumerator ShowEnterBattleMask()
@@ -122,43 +148,30 @@ namespace Pekemon
         }
 
 
-        private void CloseView()
-        {
-            if ((object)curCG != null)
-            {
-                ui.selectCG.alpha = 0;
-                ui.selectCG.alpha = 1;
-            }
-        }
-
         //select
-        private void SelectBtnSkill()
+        private void OpenSelectSkillView()
         {
-            CloseSlect();
+            ui.selectCG.alpha = 0;
 
-            curCG = ui.skillCG;
-            ui.skillCG.alpha = 1;
-            EventSystem.current.SetSelectedGameObject(ui.btn_Skills[0].gameObject);
+            curCG = ui.selectSkillCG;
+            ui.selectSkillCG.alpha = 1;
+            EventSystem.current.SetSelectedGameObject(ui.Skills[0].gameObject);
+            Debug.Log("select skill " + ui.Skills[0].gameObject);
+
         }
         private void SelectBtnBack()
         {
             Debug.Log("逃跑。");
         }
-        private void CloseSlect()
-        {
-            ui.selectCG.alpha = 0;
-        }
 
 
         //select skill
-        private void SelectSkill(int index)
+        private void SelectSkill()
         {
-            selectSkillIndex = index;
-
-            var move = trainers.CurPet.moves[index];
+            var move = trainers.CurPet.moves[selectSkillIndex];
             ui.txt_Description.text = move.MoveBase.Description + "\n" + move.PP.ToString() + "/" + move.MoveBase.PP.ToString();
         }
-        private void CastSkill()
+        private void CastSkill(BaseEventData data)
         {
             if (selectSkillIndex == 1)
             {

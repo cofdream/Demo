@@ -48,22 +48,9 @@ namespace Pekemon
         public Button btn_Back;
 
         [Header("技能")]
-        public CanvasGroup skillCG;
-        public Button[] btn_Skills;
+        public CanvasGroup selectSkillCG;
+        public EventTrigger[] Skills;
         public Text[] txt_Skills;
         public Text txt_Description;
-
-        public UnityAction<int> SelectSkillCallback;
-        public UnityAction CastSkillCallback;
-
-        public void SelectSkill(int index)
-        {
-            SelectSkillCallback?.Invoke(index);
-        }
-        public void OnClickSkill()
-        {
-            CastSkillCallback?.Invoke();
-        }
-
     }
 }

@@ -71,15 +71,29 @@ namespace Pekemon
             }
             else
             {
-                if (!Stop)
-                {
-                    CheckMove();
-                }
+                CheckMove();
             }
         }
 
         private void CheckMove()
         {
+            if (Stop) return;
+
+            
+            // 
+            // StartMove()
+            // SetMove(vector2 value)
+            // StopMove()
+
+
+            //  移动
+            //      转向
+            //      位移
+
+
+
+
+
             if (movement.x != 0)
             {
                 towards.x = movement.x;
