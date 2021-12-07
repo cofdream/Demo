@@ -10,7 +10,7 @@ namespace Pekemon
         [SerializeField] float speed;
         [SerializeField] Animator animator;
 
-        bool isCanMove;//是否可移动
+        bool isStopMove;//是否停止移动
         bool isMovement;//是否在运动
         Vector2 forward;
 
@@ -19,11 +19,11 @@ namespace Pekemon
         private Vector2 movement;
 
         public bool grid = true;
-        public bool stop = false;
 
         private void Awake()
         {
             forward = new Vector2(0, -1);
+            isStopMove = true;
         }
 
         void Update()
@@ -34,17 +34,13 @@ namespace Pekemon
             value.y = Input.GetAxisRaw("Vertical");
 
 
-            if (stop)
+            if (value == Vector2.zero)
             {
-                stop = false;
                 StopMove();
             }
             else
             {
-                if (value != Vector2.zero)
-                {
-                    SetMoveValue2(value);
-                }
+                SetMoveValue2(value);
             }
         }
 
@@ -53,6 +49,7 @@ namespace Pekemon
         {
             //调整输入值 
             if (value.x != 0) value.y = 0;
+
             movement = value;
 
             if (isMovement == false)
@@ -63,6 +60,7 @@ namespace Pekemon
 
         private IEnumerator OnMove()
         {
+            isStopMove = false;
             isMovement = true;
         _move:
 
@@ -78,15 +76,14 @@ namespace Pekemon
                     yield return new WaitForSeconds(0.33f);
                 }
 
-                if (isCanMove)
-                    goto _move;
-                else
+                if (isStopMove)
                 {
-                    Debug.Log("end");
                     isMovement = false;
                     PlayIdleAni();
                     yield break;
                 }
+                else
+                    goto _move;
             }
 
             //移动
@@ -104,15 +101,14 @@ namespace Pekemon
                     {
                         transform.position = target;
 
-                        if (isCanMove)
-                            goto _move;
-                        else
+                        if (isStopMove)
                         {
-                            Debug.Log("end");
                             isMovement = false;
                             PlayIdleAni();
                             break;
                         }
+                        else
+                            goto _move;
                     }
                     else
                     {
@@ -127,18 +123,16 @@ namespace Pekemon
                 PlayMoveAni();
                 while (true)
                 {
-                    if (isCanMove)
+                    if (isStopMove)
                     {
-                        Debug.Log("有障碍 不可位移");
-                        //PlayMoveAni();
-                        yield return null;
-                    }
-                    else
-                    {
-                        Debug.Log("end");
                         isMovement = false;
                         PlayIdleAni();
                         break;
+                    }
+                    else
+                    {
+                        Debug.Log("有障碍 不可位移");
+                        yield return null;
                     }
                 }
             }
@@ -148,10 +142,9 @@ namespace Pekemon
 
         public void StopMove()
         {
-            if (isCanMove)
+            if (isStopMove == false)
             {
-                isCanMove = false;
-                Debug.Log("Set Camove false");
+                isStopMove = true;
                 // stop move
             }
         }
@@ -175,7 +168,8 @@ namespace Pekemon
         {
             animator.SetBool("Walk", false);
         }
-
+        // todo
+        // 动画和移动不是很匹配。可以调整一下
 
 
 
