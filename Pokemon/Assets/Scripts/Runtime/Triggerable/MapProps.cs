@@ -6,7 +6,7 @@ namespace Pekemon
 {
     public class MapProps : MonoBehaviour, ITriggerable
     {
-        public void PlayerTriggerable(PlayerController playerController)
+        public void PlayerTriggerable(PlayerController2 playerController)
         {
             var dialog = UIManager.Get<Dialog>();
 

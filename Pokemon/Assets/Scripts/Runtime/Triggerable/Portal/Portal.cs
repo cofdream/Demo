@@ -12,10 +12,10 @@ namespace Pekemon
 
         private Vector3 Point => transform.position - new Vector3(0, 0.5f, 0);
 
-        public void PlayerTriggerable(PlayerController playerController)
+        public void PlayerTriggerable(PlayerController2 playerController)
         {
-            this.playerController = playerController;
-            playerController.MoveEnd += PlayerEndMove;
+            //this.playerController = playerController;
+            //playerController.MoveEnd += PlayerEndMove;
         }
         private void PlayerEndMove()
         {

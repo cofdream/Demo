@@ -1,24 +1,28 @@
-﻿using System.Collections;
+﻿using Cofdream.ToolKit;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Pekemon
 {
-    public class RoleControler : MonoBehaviour
+    public class MoveControler : MonoBehaviour
     {
         [SerializeField] float speed;
         [SerializeField] Animator animator;
 
-        bool isStopMove;//是否停止移动
-        bool isMovement;//是否在运动
-        Vector2 forward;
+        [ReadOnly, SerializeField] bool isStopMove;//是否停止移动
+        [ReadOnly, SerializeField] bool isMovement;//是否在运动
+        [ReadOnly, SerializeField] Vector2 forward;
+        [ReadOnly, SerializeField] Vector2 movement;
+        [ReadOnly, SerializeField] Vector3 target;
 
-        public Vector2 Forword => forward;
+        public Func<bool> CheckForwardGrid;
+        public UnityAction MoveOnceEnd;
 
-        private Vector2 movement;
-
-        public bool grid = true;
+        public Vector2 Forward => forward;
+        public Vector3 MoveToPosition => target;
 
         private void Awake()
         {
@@ -26,31 +30,16 @@ namespace Pekemon
             isStopMove = true;
         }
 
-        void Update()
-        {
-            // 模拟外部输入调用
-            Vector2 value;
-            value.x = Input.GetAxisRaw("Horizontal");
-            value.y = Input.GetAxisRaw("Vertical");
 
 
-            if (value == Vector2.zero)
-            {
-                StopMove();
-            }
-            else
-            {
-                SetMoveValue2(value);
-            }
-        }
-
-
-        public void SetMoveValue2(Vector2 value)
+        public void SetMoveValue(Vector2 value)
         {
             //调整输入值 
             if (value.x != 0) value.y = 0;
 
             movement = value;
+
+            isStopMove = false;
 
             if (isMovement == false)
             {
@@ -60,7 +49,6 @@ namespace Pekemon
 
         private IEnumerator OnMove()
         {
-            isStopMove = false;
             isMovement = true;
         _move:
 
@@ -87,13 +75,13 @@ namespace Pekemon
             }
 
             //移动
+            target = transform.position + new Vector3(forward.x, forward.y, 0);
             bool canMoving = CheckGridCanMoving();
             if (canMoving)
             {
                 //无障碍
                 PlayMoveAni();
 
-                Vector3 target = transform.position + new Vector3(forward.x, forward.y, 0);
                 while (true)
                 {
                     Vector3 value = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
@@ -101,7 +89,7 @@ namespace Pekemon
                     {
                         transform.position = target;
 
-                        if (isStopMove)
+                        if (IsContinueMove())
                         {
                             isMovement = false;
                             PlayIdleAni();
@@ -131,7 +119,7 @@ namespace Pekemon
                     }
                     else
                     {
-                        Debug.Log("有障碍 不可位移");
+                        //Debug.Log("有障碍 不可位移");
                         yield return null;
                     }
                 }
@@ -140,6 +128,19 @@ namespace Pekemon
         }
 
 
+        private bool CheckGridCanMoving()
+        {
+            if (CheckForwardGrid != null)
+            {
+                return CheckForwardGrid.Invoke();
+            }
+            return true;
+        }
+        private bool IsContinueMove()
+        {
+            MoveOnceEnd?.Invoke();
+            return isStopMove;
+        }
         public void StopMove()
         {
             if (isStopMove == false)
@@ -147,6 +148,7 @@ namespace Pekemon
                 isStopMove = true;
                 // stop move
             }
+            //Debug.Log("Stop");
         }
 
         private void PlayeTurnToAni()
@@ -154,11 +156,6 @@ namespace Pekemon
             animator.SetBool("Walk", true);
             animator.SetFloat("X", movement.x);
             animator.SetFloat("Y", movement.y);
-        }
-
-        private bool CheckGridCanMoving()
-        {
-            return grid;
         }
         private void PlayMoveAni()
         {
@@ -168,26 +165,70 @@ namespace Pekemon
         {
             animator.SetBool("Walk", false);
         }
+
+        //       private Vector2 movementValue;
+        //       private bool Quit;
+
+        //       public IdleState idleState;
+        //       public RotationState rotationState;
+
+        //       public State state;
+
+        //       private void Start()
+        //       {
+        //           state = idleState;
+        //       }
+
+        //       private void Update()
+        //       {
+        //           var newState = state.Tick();
+        //           if (newState != null)
+        //           {
+        //               state.Exit();
+        //               state = newState;
+        //               state.Enter(this);
+        //           }
+        //       }
+
+
+        //       [System.Serializable]
+        //       public class State
+        //       {
+        //           public State[] states;
+        //           MoveControler moveControler;
+        //           public virtual void Enter(MoveControler moveControler) { this.moveControler = moveControler; }
+        //           public virtual State Tick() { return null; }
+
+        //           public virtual void Exit() { }
+
+        //       }
+
+        //       [System.Serializable]
+        //       public class IdleState : State
+        //       {
+        //           if (true)
+        //{
+
+        //}
+        //       }
+
+        //       [System.Serializable]
+        //       public class RotationState : State
+        //       {
+
+        //       }
+
+
+
+
+
+
+
+
+
+
         // todo
         // 动画和移动不是很匹配。可以调整一下
-
-
-
-        //private void CheckMove()
-        //{
-        //    if (Stop) return;
-
-
-        //    // 
-        //    // StartMove()
-        //    // SetMove(vector2 value)
-        //    // StopMove()
-
-
-        //    //  移动
-        //    //      转向
-        //    //      位移
-
 
 
 
@@ -294,6 +335,44 @@ namespace Pekemon
         //    }
         //}
 
+
+
+        //bool isMoving2;
+        //Vector2 mo;
+        //public void SetMovement(Vector2 value)
+        //{
+        //    mo = value;
+
+        //}
+
+
+        //private void Update()
+        //{
+
+        //    if (isMoving2)
+        //    {
+        //        Vector3 value = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        //        if (Vector3.Distance(value, target) < 0.001f)
+        //        {
+        //            transform.position = target;
+        //            isMoving2 = false;
+        //        }
+        //        else
+        //        {
+        //            transform.position = value;
+        //        }
+        //    }
+        //}
+
+
+        //private IEnumerator Movment()
+        //{
+        //    /*
+        //    移动 走格子
+        //    位移->开携程（移动 -> 移动结束以后 输入为 zero/bool stop 退出移动
+        //    旋转->开携程（等待旋转动画结束
+        //    */
+        //}
 
 
 #if UNITY_EDITOR

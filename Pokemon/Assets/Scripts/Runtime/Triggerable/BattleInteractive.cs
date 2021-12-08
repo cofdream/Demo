@@ -9,7 +9,7 @@ namespace Pekemon
         public PetBase[] petBases;
         public int[] levels;
 
-        public void PlayerTriggerable(PlayerController playerController)
+        public void PlayerTriggerable(PlayerController2 playerController)
         {
             var trainersPlayer = new GameObject("Player Trainers").AddComponent<Trainers>();
             trainersPlayer.Pets = playerController.pets;

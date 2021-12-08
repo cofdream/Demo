@@ -3,7 +3,8 @@
     "rootNamespace": "Pekemon",
     "references": [
         "GUID:ec58530054224fa4f926ca0d01675a23",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:49623f7160625d74eb76f3b26e98cbe8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

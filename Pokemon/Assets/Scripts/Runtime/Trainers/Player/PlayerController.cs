@@ -199,7 +199,7 @@ namespace Pekemon
                 var triggerable = collider2D.GetComponent<ITriggerable>();
                 if (triggerable != null)
                 {
-                    triggerable.PlayerTriggerable(this);
+                    //triggerable.PlayerTriggerable(this);
                 }
             }
         }
