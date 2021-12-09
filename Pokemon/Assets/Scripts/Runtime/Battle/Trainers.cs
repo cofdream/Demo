@@ -96,5 +96,35 @@ namespace Pekemon
             Debug.Log($"{CurPet.PetBase.Name} 攻击 {trainers.CurPet.PetBase.Name} .");
         }
 
+
+        public Pet2 Pet2;
+
+        public void CheckPetDie()
+        {
+            if (Pet2.Hp == 0)
+            {
+
+            }
+        }
+
+    }
+
+    [System.Serializable]
+    public class Pet2
+    {
+        public int Hp;
+        public int MaxHP;
+        public int Atk;
+
+
+        public void Attack(Pet2 target)
+        {
+            target.BeAttack(Atk);
+        }
+
+        public void BeAttack(int damage)
+        {
+            Hp -= damage;
+        }
     }
 }

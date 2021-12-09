@@ -38,10 +38,6 @@ namespace Pekemon
         }
 
 
-        void Start()
-        {
-            StartCoroutine(Run());
-        }
         static IEnumerator Run()
         {
             UIBattle = UIFractory.GetUI<UIBattle>();
@@ -70,5 +66,74 @@ namespace Pekemon
             yield return null;
         }
 
+
+        public bool run;
+
+        [SerializeField] Team leftTeam;
+        [SerializeField] Team rightTeam;
+
+
+        void Start()
+        {
+            //StartCoroutine(Run());
+
+            //设置战斗宠物
+            leftTeam.BattlePet = leftTeam.Trainers.Pets[0];
+            rightTeam.BattlePet = rightTeam.Trainers.Pets[0];
+        }
+
+        private void Update()
+        {
+            if (run == false) return;
+
+            if (leftTeam.SelectMove != null && rightTeam.SelectMove != null)
+            {
+                
+            }
+        }
+
+        private void OnGUI()
+        {
+            GUILayout.BeginHorizontal();
+            {
+                GUILayout.BeginVertical(new GUIContent("Left"), "box");
+                {
+                    GUILayout.Space(20);
+
+                    var moves = leftTeam.BattlePet.moves;
+                    for (int i = 0; i < moves.Length; i++)
+                    {
+                        if (GUILayout.Button(moves[i].MoveBase.Name))
+                        {
+                            leftTeam.SelectMove = moves[i];
+                        }
+                    }
+                }
+                GUILayout.EndVertical();
+
+                GUILayout.BeginVertical(new GUIContent("Right"), "box");
+                {
+                    GUILayout.Space(20);
+
+                    var moves = rightTeam.BattlePet.moves;
+                    for (int i = 0; i < moves.Length; i++)
+                    {
+                        if (GUILayout.Button(moves[i].MoveBase.Name))
+                        {
+                            rightTeam.SelectMove = moves[i];
+                        }
+                    }
+                }
+                GUILayout.EndVertical();
+            }
+            GUILayout.EndHorizontal();
+        }
+    }
+    [System.Serializable]
+    public class Team
+    {
+        [SerializeReference] public Trainers Trainers;
+        [SerializeReference] public Pet BattlePet;
+        [SerializeReference] public Move SelectMove;
     }
 }

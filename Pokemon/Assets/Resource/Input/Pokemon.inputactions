@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Cancel",
+                    "name": "Back",
                     "type": "Button",
                     "id": "ccfc6aa9-67c0-43e2-b1a1-36468ef36ce1",
                     "expectedControlType": "Button",
@@ -276,7 +276,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Cancel",
+                    "action": "Back",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -463,7 +463,7 @@
                 },
                 {
                     "name": "Click",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "09d46e1d-ebd1-468f-8a27-821cd6b0f37f",
                     "expectedControlType": "Button",
                     "processors": "",
