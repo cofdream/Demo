@@ -17,6 +17,8 @@ public class Trainers : MonoBehaviour
 
     internal System.Action Die;
 
+    public UITrainers UITrainers;
+
     private void Start()
     {
         Actions = new List<Action>()
@@ -35,6 +37,8 @@ public class Trainers : MonoBehaviour
             {
                 pet = Pets[i];
                 PetIndex = i;
+
+                UITrainers.PutPet(pet);
 
                 pet.Die = () =>
                 {
@@ -67,12 +71,16 @@ public class Trainers : MonoBehaviour
     public void Attack()
     {
         pet.Attack(target.pet);
+
+        target.UITrainers.UpdatePetHp(target.pet);
     }
     public void UseProps()
     {
         pet.Hp += Random.Range(0, 11);
         pet.Atk += Random.Range(0, 4);
         pet.Speed += Random.Range(0, 4);
+
+        UITrainers.UpdatePetHp(pet);
     }
     public void Sleep()
     {

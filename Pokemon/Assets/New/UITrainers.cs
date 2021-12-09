@@ -1,19 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UITrainers : MonoBehaviour
 {
-    public Text textName;
-    void Start()
-    {
+    public UIPet Pet;
 
+    public void PutPet(Pet pet)
+    {
+        Pet.SetData(pet);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePetHp(Pet pet)
     {
-
+        Pet.UpdatePetHp(pet);
     }
 }

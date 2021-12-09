@@ -34,7 +34,11 @@ public class Battle : MonoBehaviour
             RoundNumber++;
 
             left.StartBattle(right);
-            right.StartBattle(left);
+
+            if (StartRound)
+            {
+                right.StartBattle(left);
+            }
         }
     }
 

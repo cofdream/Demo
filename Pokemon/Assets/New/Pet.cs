@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Pet : MonoBehaviour
 {
+    public string Name;
+    public int Level;
+
+    public int MaxHp;
+
     public int Hp;
     public int Atk;
     public int Speed;
