@@ -6,12 +6,16 @@ namespace Pekemon
 {
     public class UIManager : MonoBehaviour
     {
-        [SerializeField] private Transform canvas;
+        [SerializeField] Transform canvas;
+        [SerializeField] Transform maskCanvas;
+
         [SerializeField] private UIConfig uiConfig;
 
         private List<GameObject> uiClones;
 
         private static UIManager instance;
+
+        public Transform MaskCanvas => instance.maskCanvas;
 
         private void Awake()
         {
@@ -40,7 +44,8 @@ namespace Pekemon
         public static void Close(GameObject ui)
         {
             //instance.uiClones.Remove(ui);
-            
+
         }
+
     }
 }

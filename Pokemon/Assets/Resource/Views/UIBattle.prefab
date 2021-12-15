@@ -536,7 +536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0f37bf3cf5680a64d863b5f155b2a597, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1293,7 +1293,7 @@ RectTransform:
   - {fileID: 6070085569033777214}
   - {fileID: 8083204629818047411}
   m_Father: {fileID: 7228724107312533851}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2034,7 +2034,7 @@ RectTransform:
   - {fileID: 8151795826318941913}
   - {fileID: 6982746215167229186}
   m_Father: {fileID: 7228724107312533851}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -2089,7 +2089,7 @@ RectTransform:
   - {fileID: 1865303940381475878}
   - {fileID: 7926651168051660015}
   m_Father: {fileID: 7228724107312533851}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2241,7 +2241,7 @@ RectTransform:
   - {fileID: 8246720477196489217}
   - {fileID: 8860505398471762635}
   m_Father: {fileID: 7228724107312533851}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -3373,10 +3373,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7409544750961540198}
-  - {fileID: 7416539617862029056}
   - {fileID: 5273845778373127408}
   - {fileID: 2391442149228799054}
+  - {fileID: 7409544750961540198}
+  - {fileID: 7416539617862029056}
   - {fileID: 5520622035689742294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3765,7 +3765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aacaae602a38f884ab9e02e43de3736d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

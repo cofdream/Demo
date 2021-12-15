@@ -12,7 +12,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "7db468f5a8e06b741c2d1dcae236b27708b08e1d"
+      "hash": "4c768bab7226b7ae2d0545dbe8ba228599aa3f8b"
     },
     "com.mischief.markdownviewer": {
       "version": "https://github.com/gwaredd/UnityMarkdownViewer.git",
