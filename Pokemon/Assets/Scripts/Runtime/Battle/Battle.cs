@@ -40,7 +40,7 @@ namespace Pekemon
 
         static IEnumerator Run()
         {
-            UIBattle = UIFractory.GetUI<UIBattle>();
+            //UIBattle = UIFractory.GetUI<UIBattle>();
 
             right.UseInput = true;
 

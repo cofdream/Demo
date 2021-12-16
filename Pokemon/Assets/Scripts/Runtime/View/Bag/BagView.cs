@@ -30,7 +30,7 @@ namespace Pekemon
             GlobalInput.UIAction.CancelQueue.Remove(Close);
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
-            UIManager.Close(gameObject);
+            //UIManager.Close(gameObject);
             Destroy(gameObject);
     }
 

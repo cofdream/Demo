@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,23 +8,37 @@ namespace Pekemon
 {
     public class RoleControler : MonoBehaviour
     {
-        [SerializeField] float speed;
+        public bool grid = true;
+
+
         [SerializeField] Animator animator;
 
-        bool isStopMove;//是否停止移动
-        bool isMovement;//是否在运动
-        Vector2 forward;
+        [SerializeField] StateType stateType;
+        private bool isStopMovment;//是否停止移动
+        private Vector2 moveInputValue;
 
-        public Vector2 Forword => forward;
+        //move
+        private Vector3 targetPos;
+        private Vector2 forward;
+        [SerializeField] float speed;
 
-        private Vector2 movement;
+        // turn to
+        private float turnToTime = 0.4f;
+        private float curTurnToTime;
 
-        public bool grid = true;
+        private enum StateType
+        {
+            Idle,
+            Move,
+            TurnTo,
+        }
 
         private void Awake()
         {
+            isStopMovment = true;
+
+            stateType = StateType.Idle;
             forward = new Vector2(0, -1);
-            isStopMove = true;
         }
 
         void Update()
@@ -34,132 +49,109 @@ namespace Pekemon
             value.y = Input.GetAxisRaw("Vertical");
 
 
+            SetInutValue(value);
+
+            switch (stateType)
+            {
+                case StateType.Idle:
+                    IdleState();
+                    break;
+                case StateType.Move:
+                    MoveState();
+                    break;
+                case StateType.TurnTo:
+                    TurnToState();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void SetInutValue(Vector2 value)
+        {
             if (value == Vector2.zero)
             {
-                StopMove();
+                moveInputValue = Vector2.zero;
+                isStopMovment = true;
             }
             else
             {
-                SetMoveValue2(value);
-            }
-        }
-
-
-        public void SetMoveValue2(Vector2 value)
-        {
-            //调整输入值 
-            if (value.x != 0) value.y = 0;
-
-            movement = value;
-
-            if (isMovement == false)
-            {
-                StartCoroutine(OnMove());
-            }
-        }
-
-        private IEnumerator OnMove()
-        {
-            isStopMove = false;
-            isMovement = true;
-        _move:
-
-            //转向
-            if (movement - forward != Vector2.zero)
-            {
-                forward = movement;
-
-                PlayeTurnToAni();
-
-                // old
+                if (value.x != 0)
                 {
-                    yield return new WaitForSeconds(0.33f);
+                    value.y = 0;
                 }
+                moveInputValue = value;
+                isStopMovment = false;
+            }
 
-                if (isStopMove)
+        }
+
+
+        private void IdleState()
+        {
+            if (isStopMovment == false)
+            {
+                if (forward != moveInputValue)
                 {
-                    isMovement = false;
-                    PlayIdleAni();
-                    yield break;
+                    forward = moveInputValue;
+                    PlayeTurnToAni(forward);
+                    curTurnToTime = 0;
+                    stateType = StateType.TurnTo;
                 }
                 else
-                    goto _move;
-            }
-
-            //移动
-            bool canMoving = CheckGridCanMoving();
-            if (canMoving)
-            {
-                //无障碍
-                PlayMoveAni();
-
-                Vector3 target = transform.position + new Vector3(forward.x, forward.y, 0);
-                while (true)
                 {
-                    Vector3 value = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-                    if (Vector3.Distance(value, target) < 0.001f)
-                    {
-                        transform.position = target;
+                    forward = moveInputValue;
+                    targetPos = transform.position + new Vector3(forward.x, forward.y, 0);
+                    PlayMoveAni();
+                    stateType = StateType.Move;
+                }
+            }
+        }
 
-                        if (isStopMove)
-                        {
-                            isMovement = false;
-                            PlayIdleAni();
-                            break;
-                        }
-                        else
-                            goto _move;
-                    }
-                    else
+        private void MoveState()
+        {
+            Vector3 value = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            if (Vector3.Distance(value, targetPos) < 0.001f)
+            {
+                transform.position = targetPos;
+                if (isStopMovment)
+                {
+                    PlayIdleAni();
+                    stateType = StateType.Idle;
+                }
+                else
+                {
+                    if (forward != moveInputValue)
                     {
-                        transform.position = value;
-                        yield return null;
+                        forward = moveInputValue;
+                        PlayeTurnToAni(forward);
                     }
+                    targetPos = transform.position + new Vector3(forward.x, forward.y, 0);
                 }
             }
             else
             {
-                //有障碍 不可位移
-                PlayMoveAni();
-                while (true)
-                {
-                    if (isStopMove)
-                    {
-                        isMovement = false;
-                        PlayIdleAni();
-                        break;
-                    }
-                    else
-                    {
-                        Debug.Log("有障碍 不可位移");
-                        yield return null;
-                    }
-                }
+                transform.position = value;
             }
-
         }
 
-
-        public void StopMove()
+        private void TurnToState()
         {
-            if (isStopMove == false)
+            curTurnToTime += Time.deltaTime;
+            if (curTurnToTime >= turnToTime)
             {
-                isStopMove = true;
-                // stop move
+                PlayIdleAni();
+                stateType = StateType.Idle;
             }
         }
 
-        private void PlayeTurnToAni()
+        private void PlayeTurnToAni(Vector2 value)
         {
             animator.SetBool("Walk", true);
-            animator.SetFloat("X", movement.x);
-            animator.SetFloat("Y", movement.y);
+            animator.SetFloat("X", value.x);
+            animator.SetFloat("Y", value.y);
         }
 
-        private bool CheckGridCanMoving()
-        {
-            return grid;
-        }
         private void PlayMoveAni()
         {
             animator.SetBool("Walk", true);
@@ -168,132 +160,6 @@ namespace Pekemon
         {
             animator.SetBool("Walk", false);
         }
-        // todo
-        // 动画和移动不是很匹配。可以调整一下
-
-
-
-        //private void CheckMove()
-        //{
-        //    if (Stop) return;
-
-
-        //    // 
-        //    // StartMove()
-        //    // SetMove(vector2 value)
-        //    // StopMove()
-
-
-        //    //  移动
-        //    //      转向
-        //    //      位移
-
-
-
-
-
-        //    if (movement.x != 0)
-        //    {
-        //        towards.x = movement.x;
-        //        towards.y = 0;
-        //        StartMove(new Vector3(movement.x, 0, 0));
-        //    }
-        //    else if (movement.y != 0)
-        //    {
-        //        towards.x = 0;
-        //        towards.y = movement.y;
-        //        StartMove(new Vector3(0, movement.y, 0));
-        //    }
-        //    else
-        //    {
-        //        animator.SetBool("Walk", false);
-        //    }
-        //}
-        //private void StartMove(Vector3 direction)
-        //{
-        //    var startPosition = transform.position;
-        //    var targetPosition = startPosition + direction;
-        //    var checkPoint = targetPosition + new Vector3(0, 0.5f, 0);
-
-        //    animator.SetFloat("X", direction.x);
-        //    animator.SetFloat("Y", direction.y);
-        //    animator.SetBool("Walk", true);
-
-        //    //检测障碍
-        //    if (CanMoveTo(checkPoint))
-        //    {
-        //        startTime = Time.time;
-        //        moveTime = 0;
-
-        //        isMove = true;
-        //        this.targetPosition = targetPosition;
-
-        //        //禁止输入
-        //        GlobalInput.RemoveFirst(GlobalInput.PlayerAction);
-        //    }
-        //}
-
-        //private bool CanMoveTo(Vector2 point)
-        //{
-        //    var collider = Physics2D.OverlapCircle(point, 0.4f, notMoveLayerMask);
-        //    if (collider == null)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        var obstacle = collider.GetComponent<Obstacle>();
-        //        if (obstacle == null)
-        //        {
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            return obstacle.CanMove();
-        //        }
-        //    }
-        //}
-
-        //public void Moving()
-        //{
-        //    animator.speed = speed;
-
-        //    moveTime = Time.time - startTime;
-        //    var position = transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
-
-        //    float distance = Vector3.Distance(position, targetPosition);
-        //    if (distance <= 0.0001f)
-        //    {
-        //        isMove = false;
-
-        //        animator.SetBool("Walk", false);
-
-        //        //恢复输入
-        //        GlobalInput.SetFirst(GlobalInput.PlayerAction);
-
-        //        MoveEnd?.Invoke();
-        //    }
-        //}
-
-
-
-        //public void ConfirmCallback()
-        //{
-        //    if (isMove) return;
-
-        //    Vector2 forwardPoint = towards + (Vector2)transform.position + new Vector2(0, 0.5f);
-
-        //    var collider2D = Physics2D.OverlapCircle(forwardPoint, 0.4f, tiggerLayerMask);
-        //    if (collider2D != null)
-        //    {
-        //        var triggerable = collider2D.GetComponent<ITriggerable>();
-        //        if (triggerable != null)
-        //        {
-
-        //        }
-        //    }
-        //}
-
 
 
 #if UNITY_EDITOR
@@ -316,7 +182,7 @@ namespace Pekemon
             //}
             Gizmos.color = Color.green;
 
-            Gizmos.DrawSphere(position, 0.4f);
+            Gizmos.DrawWireCube(position, Vector3.one * 0.4f);
         }
 #endif
     }

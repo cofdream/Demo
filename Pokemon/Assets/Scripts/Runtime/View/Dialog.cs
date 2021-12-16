@@ -30,7 +30,7 @@ namespace Pekemon
             canvasGroup.alpha = 0;
             textTypewriter.PlayEnd = null;
 
-            UIManager.Close(gameObject);
+            //UIManager.Close(gameObject);
 
             Destroy(gameObject);
         }

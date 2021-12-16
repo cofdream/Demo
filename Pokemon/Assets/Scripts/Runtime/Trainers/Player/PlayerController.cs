@@ -32,7 +32,7 @@ namespace Pekemon
 
         private void OpenMenuView()
         {
-            UIFractory.GetUI<UIMenu>().Show();
+            //UIFractory.GetUI<UIMenu>().Show();
         }
         private void SetMovement(Vector2 value)
         {

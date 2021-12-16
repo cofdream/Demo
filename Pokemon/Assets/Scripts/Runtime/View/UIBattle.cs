@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Pekemon
 {
-    public class UIBattle : IUI
+    public class UIBattle 
     {
         private BattleMono ui;
 
@@ -18,7 +18,7 @@ namespace Pekemon
 
         public UIBattle()
         {
-            ui = UIFractory.GetBind<BattleMono>("Assets/Resource/Views/UIBattle.prefab");
+            ui = GetBind<BattleMono>("Assets/Resource/Views/UIBattle.prefab");
 
             GlobalInput.SetFirst(GlobalInput.UIAction);
 
@@ -57,7 +57,13 @@ namespace Pekemon
 
             EventSystem.current.SetSelectedGameObject(ui.btn_Fight.gameObject);
         }
-
+        public T GetBind<T>(string key) where T : MonoBehaviour
+        {
+            GameObject go = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(key);
+            go = GameObject.Instantiate(go, GameObject.Find("MaskCanvas").transform);
+            go.TryGetComponent<T>(out T bind);
+            return bind;
+        }
         public void Close()
         {
 

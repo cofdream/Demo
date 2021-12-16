@@ -8,9 +8,9 @@ namespace Pekemon
     {
         public void PlayerTriggerable(PlayerController playerController)
         {
-            var dialog = UIManager.Get<Dialog>();
+            //var dialog = UIManager.Get<Dialog>();
 
-            dialog.Show("获取物品：？？？ X 1.", dialog.Close);
+            //dialog.Show("获取物品：？？？ X 1.", dialog.Close);
         }
     }
 }

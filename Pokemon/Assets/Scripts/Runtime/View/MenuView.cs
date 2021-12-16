@@ -43,7 +43,6 @@ namespace Pekemon
             GlobalInput.UIAction.ConfirmQueue.Remove(SelectMenu);
             GlobalInput.RemoveFirst(GlobalInput.UIAction);
 
-            UIManager.Close(gameObject);
             Destroy(gameObject);
         }
 
@@ -54,10 +53,10 @@ namespace Pekemon
                 case MenuType.Pokedex:
                     break;
                 case MenuType.Bag:
-                    UIManager.Get<BagView>();
+                    //UIManager.Get<BagView>();
                     break;
                 case MenuType.Pet:
-                    UIManager.Get<PetView>();
+                    //UIManager.Get<PetView>();
                     break;
                 case MenuType.Back:
                     Close();

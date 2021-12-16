@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Pekemon
 {
-    public class UIMask : IUI
+    public class UIMask
     {
         private UIMaskMono ui;
 
