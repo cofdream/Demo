@@ -11,25 +11,25 @@ namespace Pekemon
 
         public void PlayerTriggerable(PlayerController playerController)
         {
-            var trainersPlayer = new GameObject("Player Trainers").AddComponent<Trainers>();
-            trainersPlayer.Pets = playerController.pets;
+            //var trainersPlayer = new GameObject("Player Trainers").AddComponent<Trainers>();
+            //trainersPlayer.Pets = playerController.pets;
 
-            var trainersNPC = new GameObject("NPC Trainers").AddComponent<Trainers>();
-            int length = petBases.Length;
-            var pets = new Pet[length];
-            for (int i = 0; i < length; i++)
-            {
-                pets[i] = new Pet(petBases[i], levels[i]);
-            }
-            trainersNPC.Pets = pets;
+            //var trainersNPC = new GameObject("NPC Trainers").AddComponent<Trainers>();
+            //int length = petBases.Length;
+            //var pets = new Pet[length];
+            //for (int i = 0; i < length; i++)
+            //{
+            //    pets[i] = new Pet(petBases[i], levels[i]);
+            //}
+            //trainersNPC.Pets = pets;
 
-            foreach (var item in trainersPlayer.Pets)
-                item.Hp = item.MaxHp;
+            //foreach (var item in trainersPlayer.Pets)
+            //    item.Hp = item.MaxHp;
 
-            foreach (var item in trainersNPC.Pets)
-                item.Hp = item.MaxHp;
+            //foreach (var item in trainersNPC.Pets)
+            //    item.Hp = item.MaxHp;
 
-            Battle.CreateBattleWord(trainersPlayer, trainersNPC);
+            //Battle.CreateBattleWord(trainersPlayer, trainersNPC);
         }
     }
 }

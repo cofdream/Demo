@@ -6,32 +6,34 @@ namespace Pekemon
 {
     public class Portal : MonoBehaviour, ITriggerable
     {
-        public Portal targetPortal;
+        [SerializeField] Portal targetPortal;
+        [SerializeField] Vector2 forward;
 
         private PlayerController playerController;
 
-        private Vector3 Point => transform.position - new Vector3(0, 0.5f, 0);
 
         public void PlayerTriggerable(PlayerController playerController)
         {
             this.playerController = playerController;
-            playerController.MoveEnd += PlayerEndMove;
+            StartCoroutine(PlayerPortal());
         }
-        private void PlayerEndMove()
-        {
-            StartCoroutine(Move());
-        }
-        IEnumerator Move()
-        {
-            playerController.Stop = true;
 
+        IEnumerator PlayerPortal()
+        {
+            yield return null;
+            Debug.Log("start protal.");
+
+            //停止控制
+            playerController.State = false;
+
+
+            //黑屏Mask
+
+            playerController.SetPosition(targetPortal.transform.position, targetPortal.forward);
+
+            //恢复
+            playerController.State = true;
             yield return new WaitForSeconds(0.5f);
-
-            playerController.transform.position = targetPortal.Point;
-
-            playerController.MoveEnd -= PlayerEndMove;
-            playerController.Stop = false;
-            playerController = null;
         }
     }
 }
