@@ -12,6 +12,8 @@ namespace Pekemon
         public Vector2 targetPosition;
 
         public Vector2 forward;
+        public float sightDistance = 5f;
+        public LayerMask PlayerLayer;
 
         StateType stateType;
 
@@ -19,14 +21,13 @@ namespace Pekemon
 
         private enum StateType
         {
-            Idle,
             Patrol,
             Fight,
         }
 
         private void Start()
         {
-            stateType = StateType.Idle;
+            stateType = StateType.Patrol;
 
             transform.position = startPosition;
             roleControler.MoveEndEvent = MoveEnd;
@@ -37,12 +38,11 @@ namespace Pekemon
         {
             switch (stateType)
             {
-                case StateType.Idle:
-                    IdleState();
-                    break;
                 case StateType.Patrol:
+                    PatrolState();
                     break;
                 case StateType.Fight:
+                    FifghtState();
                     break;
                 default:
                     break;
@@ -71,22 +71,31 @@ namespace Pekemon
             roleControler.SetInutValue(forward);
         }
 
-        //待机
-        private void IdleState()
-        {
-            //检测是否可以移动
-            stateType = StateType.Idle;
-
-
-        }
-
-
         //巡视
         private void PatrolState()
         {
-            
+            var hit2Ds = Physics2D.RaycastAll(transform.position, forward, sightDistance, PlayerLayer.value);
+            if (hit2Ds.Length == 1)
+            {
+                var player = hit2Ds[0].transform.GetComponent<PlayerController>();
+                if (player != null)
+                {
+                    stateType = StateType.Fight;
+
+                    Debug.Log("Fight");
+                    //锁定玩家移动
+
+                    //移动到玩家前面
+
+                }
+            }
+            Debug.DrawRay(transform.position, forward * sightDistance, Color.red);
         }
 
+        private void FifghtState()
+        {
+            //
+        }
 
 
 #if UNITY_EDITOR

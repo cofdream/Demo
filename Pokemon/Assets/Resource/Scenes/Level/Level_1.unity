@@ -343,11 +343,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!212 &99004097 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 359965213638242752, guid: e532d8f44f910c442a75b22150b01825, type: 3}
-  m_PrefabInstance: {fileID: 1601720576}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &173265370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,7 +1722,6 @@ GameObject:
   m_Component:
   - component: {fileID: 978862870}
   - component: {fileID: 978862878}
-  - component: {fileID: 978862873}
   - component: {fileID: 978862874}
   - component: {fileID: 978862876}
   - component: {fileID: 978862877}
@@ -1754,19 +1748,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &978862873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978862869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0193a22a2b16f546b1784b4c4b2cfc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1411667713}
 --- !u!114 &978862874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17441,11 +17422,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5987227715375984756, guid: 5d052d58ab5592b4cb45e883235e7fc9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5d052d58ab5592b4cb45e883235e7fc9, type: 3}
---- !u!212 &1411667713 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 359965213638242752, guid: e532d8f44f910c442a75b22150b01825, type: 3}
-  m_PrefabInstance: {fileID: 1007557951}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1533503335
 GameObject:
   m_ObjectHideFlags: 0
@@ -17916,7 +17892,6 @@ GameObject:
   m_Component:
   - component: {fileID: 359965213246848235}
   - component: {fileID: 359965213246848241}
-  - component: {fileID: 359965213246848238}
   - component: {fileID: 359965213246848239}
   - component: {fileID: 359965213246848240}
   m_Layer: 7
@@ -17942,19 +17917,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &359965213246848238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 359965213246848233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0193a22a2b16f546b1784b4c4b2cfc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 99004097}
 --- !u!114 &359965213246848239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17989,7 +17951,11 @@ MonoBehaviour:
   startPosition: {x: 3.5, y: -1.5}
   targetPosition: {x: 3.5, y: -6.5}
   forward: {x: 0, y: -1}
-  stateType: 0
+  sightDistance: 5
+  PlayerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  PatrolLength: 0
 --- !u!58 &359965213246848241
 CircleCollider2D:
   m_ObjectHideFlags: 0
