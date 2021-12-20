@@ -76,6 +76,8 @@ namespace Pekemon
         {
             //检测是否可以移动
             stateType = StateType.Idle;
+
+
         }
 
 
