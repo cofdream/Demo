@@ -128,12 +128,21 @@ namespace Pekemon
             }
             GUILayout.EndHorizontal();
         }
+
+
+        public BattleUnit PlayerUnit;
+        public BattleUnit EnemyUnit;
+
+        public void Setup()
+        {
+
+        }
     }
     [System.Serializable]
     public class Team
     {
         [SerializeReference] public Trainers Trainers;
-        [SerializeReference] public Pet BattlePet;
+        [SerializeReference] public Pokemon BattlePet;
         [SerializeReference] public Move SelectMove;
     }
 }

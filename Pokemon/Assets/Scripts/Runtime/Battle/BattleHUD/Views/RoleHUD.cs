@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Pekemon
@@ -15,23 +16,25 @@ namespace Pekemon
         [SerializeField] float speed;
 
         [Header("Pet")]
-        [SerializeField] Text txt_Name;
-        [SerializeField] Text txt_Level;
-        [SerializeField] Image img_HP;
-        [SerializeField] Image img_Pet;
+        [SerializeField, FormerlySerializedAs("txt_Name")] Text NameText;
+        [SerializeField, FormerlySerializedAs("txt_Level")] Text Level;
+        [SerializeField, FormerlySerializedAs("img_HP")] Image HP;
 
+        [Header("Obsolete")]
+        [SerializeField, FormerlySerializedAs("img_Pet")] Image Pet;
+        
         public void SetData(string name, int level, float hp, Sprite sprite)
         {
-            txt_Name.text = name;
-            txt_Level.text = "Lv: " + level.ToString();
-            img_HP.fillAmount = hp;
-            img_Pet.sprite = sprite;
-            img_Pet.SetNativeSize();
+            NameText.text = name;
+            Level.text = "Lv: " + level.ToString();
+            HP.fillAmount = hp;
+            Pet.sprite = sprite;
+            Pet.SetNativeSize();
         }
         public void SetHP(float hp)
         {
             Debug.Log(hp);
-            img_HP.fillAmount = hp;
+            HP.fillAmount = hp;
         }
 
 
@@ -58,7 +61,7 @@ namespace Pekemon
 
         public IEnumerator ZHPet()
         {
-            var rectTran = img_Pet.GetComponent<RectTransform>();
+            var rectTran = Pet.GetComponent<RectTransform>();
             rectTran.localScale = Vector3.zero;
 
             Vector3 scale = Vector3.zero;
@@ -79,6 +82,17 @@ namespace Pekemon
                 yield return null;
             }
 
+        }
+
+
+        [SerializeReference] Pokemon pokemon;
+
+        public void Setup(Pokemon pokemon)
+        {
+            this.pokemon = pokemon;
+
+            NameText.text = pokemon.PetBase.name;
+            Level.text = "Lvl " + pokemon.Level.ToString();
         }
     }
 }

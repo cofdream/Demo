@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Pekemon
 {
-    public class UIBattle 
+    public class UIBattle
     {
         private BattleMono ui;
 
@@ -15,6 +15,8 @@ namespace Pekemon
         private int selectSkillIndex;
 
         private Trainers trainers;
+
+
 
         public UIBattle()
         {
@@ -195,6 +197,12 @@ namespace Pekemon
             {
                 trainers.DoCastSkill_4();
             }
+        }
+
+
+        public void Setup()
+        {
+            ui.playerHUD.Setup(null);
         }
     }
 }

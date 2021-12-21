@@ -6,9 +6,9 @@ namespace Pekemon
 {
     public class Trainers : MonoBehaviour
     {
-        public Pet[] Pets;
+        public Pokemon[] Pets;
         public int curPetIndex;
-        public Pet CurPet => Pets[curPetIndex];
+        public Pokemon CurPet => Pets[curPetIndex];
 
         public RoleHUD roleHUD;
         internal bool UseInput;

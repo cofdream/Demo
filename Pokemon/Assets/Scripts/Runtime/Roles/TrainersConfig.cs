@@ -8,7 +8,7 @@ namespace Pekemon
     {
 
 
-        [SerializeField] private Pet[] pets;
+        [SerializeField] private Pokemon[] pets;
         [SerializeField] private PropData[] propDatas;
 
         

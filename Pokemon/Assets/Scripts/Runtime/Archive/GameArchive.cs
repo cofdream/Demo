@@ -38,6 +38,6 @@ namespace Pekemon
 
         public PetData[] PetDatas;
 
-        public Pet[] pets;
+        public Pokemon[] pets;
     }
 }
