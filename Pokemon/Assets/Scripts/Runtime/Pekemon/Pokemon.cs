@@ -7,7 +7,7 @@ namespace Pekemon
     [System.Serializable]
     public class Pokemon
     {
-        [SerializeField] private PekemonBase petBase;
+        [SerializeField] private PokemonBase petBase;
         [SerializeField] private int level;
 
         public Move[] moves;
@@ -20,11 +20,11 @@ namespace Pekemon
         public int SpDefense => Mathf.FloorToInt(petBase.SpDefense * level / 100f) + 5;
         public int Speed => Mathf.FloorToInt(petBase.Speed * level / 100f) + 5;
 
-        public PekemonBase PetBase => petBase;
+        public PokemonBase PetBase => petBase;
         public int Level => level;
 
 
-        public Pokemon(PekemonBase petBase, int level)
+        public Pokemon(PokemonBase petBase, int level)
         {
             this.petBase = petBase;
             this.level = level;
@@ -43,6 +43,8 @@ namespace Pekemon
                         index++;
                 }
             }
+
+            Hp = MaxHp;
         }
     } 
 }
