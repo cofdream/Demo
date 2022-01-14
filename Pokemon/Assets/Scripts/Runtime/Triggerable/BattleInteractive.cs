@@ -6,7 +6,7 @@ namespace Pekemon
 {
     public class BattleInteractive : MonoBehaviour, ITriggerable
     {
-        public PekemonBase[] petBases;
+        public PokemonBase[] petBases;
         public int[] levels;
 
         public void PlayerTriggerable(PlayerController playerController)

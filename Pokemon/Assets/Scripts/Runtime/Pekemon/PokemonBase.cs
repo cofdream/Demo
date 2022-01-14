@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 namespace Pekemon
 {
-    public class PekemonBase : ScriptableObject
+    public class PokemonBase : ScriptableObject
     {
         [SerializeField] private int id;
         [SerializeField] private new string name;

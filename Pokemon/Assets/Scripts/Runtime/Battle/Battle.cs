@@ -130,8 +130,8 @@ namespace Pekemon
         }
 
 
-        public BattleUnit PlayerUnit;
-        public BattleUnit EnemyUnit;
+        //public BattleUnit PlayerUnit;
+        //public BattleUnit EnemyUnit;
 
         public void Setup()
         {
