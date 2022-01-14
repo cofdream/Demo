@@ -69,5 +69,8 @@ public class PlayerControler : MonoBehaviour
         //}
 
         transform.localPosition = newPosition;
+
+
+        
     }
 }
