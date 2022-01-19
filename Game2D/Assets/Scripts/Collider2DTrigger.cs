@@ -8,10 +8,10 @@ public class Collider2DTrigger : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.IsTouchingLayers)
-        {
+        //if (collision.collider.IsTouchingLayers)
+        //{
 
-        }    
+        //}    
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
